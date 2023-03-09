@@ -1,24 +1,24 @@
 import React, { useEffect } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
 
-	const handler = (e:any) => {
+	const handler = (e: KeyboardEvent) => {
 		// e.preventDefault()
-		console.log(e)
+		console.log(e.key)
 	}
 	// window.addEventListener("click", handler)
-	useEffect(()=>{
-		window.addEventListener("keydown",handler)
-		return ()=>window.removeEventListener("keydown",handler)
-	},[handler])
+	useEffect(() => {
+		window.addEventListener("keydown", handler)
+		return () => window.removeEventListener("keydown", handler)
+	}, [handler])
 
 	return (
 		<div className="App">
-			<header className="App-header">
-				<p>Hello there</p>
-			</header>
+
+			<div className="rotors">Rotors</div>
+			<div className="lampboard">Lampboard</div>
+			<div className="plugboard">Plugboard</div>
 		</div>
 	);
 }
