@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
 import "./App.css";
+import Lampboard from "./Lampboard";
+import Rotors from "./Rotors";
+import Plugboard from "./Plugboard";
 
 function App() {
 
@@ -16,9 +19,9 @@ function App() {
 	return (
 		<div className="App">
 
-			<div className="rotors">Rotors</div>
-			<div className="lampboard">Lampboard</div>
-			<div className="plugboard">Plugboard</div>
+			<Rotors />
+			<Lampboard />
+			<Plugboard />
 		</div>
 	);
 }
