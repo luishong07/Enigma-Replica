@@ -22,7 +22,7 @@
 }
 .lampboard{
   outline:  red solid 1px;
-  background-color: #282c34;
+  background-color: #282c34; 
   min-height: 50vh;
   display: flex;
   flex-direction: column;
