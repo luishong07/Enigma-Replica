@@ -11,54 +11,34 @@ const Lampboard = () => {
     return (
 
         <Container fluid className="base">
-            <Row className="line1">
-                {/* <span>Q</span>
-                <span>W</span>
-                <span>E</span>
-                <span>R</span>
-                <span>T</span>
-                <span>Y</span>
-                <span>U</span>
-                <span>I</span>
-                <span>O</span>
-                <span>P</span> */}
+            <Row className="flex-container space-evenly">
                 {
                     firstRow.map(e => {
-                        return <Col key={e}>{e}</Col>
+                        return <Col   key={e}><span className="flex-item">{e}</span></Col>
                     })
                 }
             </Row>
-            <Row className="line2">
-                {/* <span>A</span>
-                <span>S</span>
-                <span>D</span>
-                <span>F</span>
-                <span>G</span>
-                <span>H</span>
-                <span>J</span>
-                <span>K</span>
-                <span>L</span> */}
+            <Row className="flex-container space-evenly">
                 {
                     secondRow.map(e => {
-                        return <Col key={e}>{e}</Col>
+                        return <Col   key={e}><span className="flex-item">{e}</span></Col>
                     })
                 }
             </Row>
-            <Row className="line3">
-                {/* <span>Z</span>
-                <span>X</span>
-                <span>C</span>
-                <span>V</span>
-                <span>B</span>
-                <span>N</span>
-                <span>M</span> */}
+            {/* <Row className="line3">
                 {
                     thirdRow.map(e => {
                         return <Col key={e}>{e}</Col>
                     })
                 }
-
-            </Row>
+            </Row> */}
+            <ul className="flex-container space-evenly">
+                <span className="flex-item">1</span>
+                <span className="flex-item">2</span>
+                <span className="flex-item">3</span>
+                <span className="flex-item">4</span>
+                <span className="flex-item">5</span>
+            </ul>
 
         </Container>
     );
