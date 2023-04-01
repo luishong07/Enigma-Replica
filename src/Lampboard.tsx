@@ -9,34 +9,10 @@ const Lampboard = () => {
     const thirdRow = ["Z", "X", "C", "V", "B", "N", "M"]
 
     return (
-        // <div className='container'>
-        // <Container fluid className="lamp-container ">
-        //     <Row className='row-item' >
-        //         {
-        //             firstRow.map(e => {
-        //                 return <Col key={e}>{e}</Col>
-        //             })
-        //         }
-        //     </Row>
-        //     <Row className='row-item'>
-        //         {
-        //             secondRow.map(e => {
-        //                 return <Col key={e}>{e}</Col>
-        //             })
-        //         }
-        //     </Row>
-        //     <Row className='row-item'>
-        //         {
-        //             thirdRow.map(e => {
-        //                 return <Col key={e}>{e}</Col>
-        //             })
-        //         }
-        //     </Row>
-        // </Container>
 
-        <div className="base">
-            <div className="line1">
-                <span>Q</span>
+        <Container fluid className="base">
+            <Row className="line1">
+                {/* <span>Q</span>
                 <span>W</span>
                 <span>E</span>
                 <span>R</span>
@@ -45,10 +21,15 @@ const Lampboard = () => {
                 <span>U</span>
                 <span>I</span>
                 <span>O</span>
-                <span>P</span>
-            </div>
-            <div className="line2">
-                <span>A</span>
+                <span>P</span> */}
+                {
+                    firstRow.map(e => {
+                        return <Col key={e}>{e}</Col>
+                    })
+                }
+            </Row>
+            <Row className="line2">
+                {/* <span>A</span>
                 <span>S</span>
                 <span>D</span>
                 <span>F</span>
@@ -56,20 +37,30 @@ const Lampboard = () => {
                 <span>H</span>
                 <span>J</span>
                 <span>K</span>
-                <span>L</span>
-            </div>
-            <div className="line3">
-                <span>Z</span>
+                <span>L</span> */}
+                {
+                    secondRow.map(e => {
+                        return <Col key={e}>{e}</Col>
+                    })
+                }
+            </Row>
+            <Row className="line3">
+                {/* <span>Z</span>
                 <span>X</span>
                 <span>C</span>
                 <span>V</span>
                 <span>B</span>
                 <span>N</span>
-                <span>M</span>
+                <span>M</span> */}
+                {
+                    thirdRow.map(e => {
+                        return <Col key={e}>{e}</Col>
+                    })
+                }
 
-            </div>
+            </Row>
 
-        </div>
+        </Container>
     );
 }
 
