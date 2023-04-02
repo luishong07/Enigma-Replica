@@ -14,14 +14,14 @@ const Lampboard = () => {
             <Row className="flex-container space-evenly">
                 {
                     firstRow.map(e => {
-                        return <Col   key={e}><span className="flex-item">{e}</span></Col>
+                        return <Col className="flex-item" as={"span"} key={e}>{e}</Col>
                     })
                 }
             </Row>
             <Row className="flex-container space-evenly">
                 {
                     secondRow.map(e => {
-                        return <Col   key={e}><span className="flex-item">{e}</span></Col>
+                        return <Col className="flex-item" as={"span"} key={e}>{e}</Col>
                     })
                 }
             </Row>
@@ -32,13 +32,13 @@ const Lampboard = () => {
                     })
                 }
             </Row> */}
-            <ul className="flex-container space-evenly">
-                <span className="flex-item">1</span>
+            <div className="flex-container space-evenly">
+                <span className="flex-item">G</span>
                 <span className="flex-item">2</span>
                 <span className="flex-item">3</span>
                 <span className="flex-item">4</span>
                 <span className="flex-item">5</span>
-            </ul>
+            </div>
 
         </Container>
     );

@@ -55,12 +55,15 @@
     border-radius: 50%;
     background: tomato;
     padding: 5px;
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     margin: 5px;
     line-height: 50px;
     color: white;
     font-weight: bold;
     font-size: 2em;
     text-align: center;
+}
+.col{
+    flex: none;
 }
