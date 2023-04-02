@@ -25,20 +25,14 @@ const Lampboard = () => {
                     })
                 }
             </Row>
-            {/* <Row className="line3">
+            <Row className="flex-container space-evenly">
                 {
                     thirdRow.map(e => {
-                        return <Col key={e}>{e}</Col>
+                        return <Col className="flex-item" as={"span"} key={e}>{e}</Col>
                     })
                 }
-            </Row> */}
-            <div className="flex-container space-evenly">
-                <span className="flex-item">G</span>
-                <span className="flex-item">2</span>
-                <span className="flex-item">3</span>
-                <span className="flex-item">4</span>
-                <span className="flex-item">5</span>
-            </div>
+            </Row>
+          
 
         </Container>
     );
