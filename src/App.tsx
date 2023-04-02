@@ -4,13 +4,25 @@ import Lampboard from "./Lampboard";
 import Rotors from "./Rotors";
 import Plugboard from "./Plugboard";
 
-function App() {
+const App:React.FC = () => {
+	const letters = /^[a-zA-Z]$/
+	const [input, setInput] = useState<string>("")
+	// const [isKeyPressed, setIsKeyPressed] = useState<boolean>(false)
 
-	const [input, setInput] = useState("")
 	const handler = (e: KeyboardEvent) => {
-		setInput(e.key)
+		console.log(e)
+		if(!e.key.match(letters)){
+			alert('Not a Letter')
+		}else{
+			// console.log('Yay')
+			setInput(e.key.toUpperCase())
+		}
+
 	}
 	useEffect(() => {
+		// const isPressed = (e)=>{
+		// 	if(e.)
+		// }
 		window.addEventListener("keydown", handler)
 		return () => window.removeEventListener("keydown", handler)
 	}, [handler])
@@ -20,7 +32,7 @@ function App() {
 	return (
 		<div className="App">
 			<Rotors />
-			<Lampboard  />
+			<Lampboard encryptedLetter={input}/>
 			<Plugboard />
 		</div>
 	);
