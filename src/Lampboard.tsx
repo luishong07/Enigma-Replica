@@ -15,9 +15,9 @@ const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp }: Props) => {
     const thirdRow = ["Z", "X", "C", "V", "B", "N", "M"]
 
     useEffect(() => {
+        // console.log('onMount')
 
-        // console.log('change')
-    }, [encryptedLetter])
+    }, [])
 
     return (
 
