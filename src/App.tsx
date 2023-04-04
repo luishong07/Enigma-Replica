@@ -7,10 +7,11 @@ import Plugboard from "./Plugboard";
 const App:React.FC = () => {
 	const letters = /^[a-zA-Z]$/
 	const [input, setInput] = useState<string>("")
+	const [isKeyUp, setIsKeyUp] = useState<boolean>(false)
 	// const [isKeyPressed, setIsKeyPressed] = useState<boolean>(false)
 
 	const handler = (e: KeyboardEvent) => {
-		console.log(e)
+		// console.log(e)
 		if(!e.key.match(letters)){
 			alert('Not a Letter')
 		}else{
@@ -20,19 +21,20 @@ const App:React.FC = () => {
 
 	}
 	useEffect(() => {
-		// const isPressed = (e)=>{
-		// 	if(e.)
-		// }
+		
 		window.addEventListener("keydown", handler)
 		return () => window.removeEventListener("keydown", handler)
-	}, [handler])
+	}, [handler, input])
 
-
+	onkeyup = (e)=>{
+		setIsKeyUp(true)
+		// console.log(e)
+	}
 
 	return (
 		<div className="App">
 			<Rotors />
-			<Lampboard encryptedLetter={input}/>
+			<Lampboard encryptedLetter={input} isKeyUp={isKeyUp}/>
 			<Plugboard />
 		</div>
 	);
