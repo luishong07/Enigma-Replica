@@ -22,21 +22,21 @@ const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp }: Props) => {
     return (
 
         <Container fluid className="base">
-            <Row className="flex-container space-evenly">
+            <Row className="lamp-row">
                 {
                     firstRow.map(e => {
                         return <Col className={`flex-item ${(encryptedLetter === e && !isKeyUp) ? 'lit' : ""}`} as={"span"} key={e}>{e}</Col>
                     })
                 }
             </Row>
-            <Row className="flex-container space-evenly">
+            <Row className="lamp-row">
                 {
                     secondRow.map(e => {
                         return <Col className={`flex-item ${(encryptedLetter === e && !isKeyUp) ? 'lit' : ""}`} as={"span"} key={e}>{e}</Col>
                     })
                 }
             </Row>
-            <Row className="flex-container space-evenly">
+            <Row className="lamp-row">
                 {
                     thirdRow.map(e => {
                         return <Col className={`flex-item ${(encryptedLetter === e && !isKeyUp) ? 'lit' : ""}`} as={"span"} key={e}>{e}</Col>

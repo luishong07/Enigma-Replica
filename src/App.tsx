@@ -8,7 +8,10 @@ const App:React.FC = () => {
 	const letters = /^[a-zA-Z]$/
 	const [input, setInput] = useState<string>("")
 	const [isKeyUp, setIsKeyUp] = useState<boolean>(false)
-	// const 
+	const [rightPosition, setRightPosition] = useState<number>(0)
+	const [middlePosition, setMiddlePosition] = useState<number>(0)
+	const [leftPosition, setLeftPosition] = useState<number>(0)
+
 
 	const handler = (e: KeyboardEvent) => {
 		// console.log(e)
@@ -21,7 +24,7 @@ const App:React.FC = () => {
 			setInput(e.key.toUpperCase())
 		}
 	}
-	onkeyup = (e)=>{
+	onkeyup = (e)=>{//this is controlling the lit up styling for the keys
 		setIsKeyUp(true)
 		setInput("")
 	}
@@ -32,12 +35,12 @@ const App:React.FC = () => {
 		return () => window.removeEventListener("keydown", handler)
 	}, [input ])
 
-	onkeydown = ()=>{
-		if(!isKeyUp)
-		console.log('help')
-	}
+	// onkeydown = ()=>{//
+	// 	if(!isKeyUp)
+	// 	console.log('help')
+	// }
 
-	const encript = (e: KeyboardEvent)=>{
+	const encript = (e: KeyboardEvent)=>{//this runs only once regardless of key being continuosly being pressed
 		if(!e.repeat){
 			console.log('test')
 		}
@@ -45,7 +48,7 @@ const App:React.FC = () => {
 
 	return (
 		<div className="App">
-			<Rotors />
+			<Rotors leftPosition={leftPosition} middlePosition={middlePosition} rightPosition={rightPosition}/>
 			<Lampboard encryptedLetter={input} isKeyUp={isKeyUp}/>
 			<Plugboard />
 		</div>
