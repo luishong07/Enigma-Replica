@@ -43,8 +43,6 @@ const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp }: Props) => {
                     })
                 }
             </Row>
-
-
         </Container>
     );
 }
