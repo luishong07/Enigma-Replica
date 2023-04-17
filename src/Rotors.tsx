@@ -3,6 +3,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
 
 
 // import Modal from 'react-bootstrap/Modal';
@@ -42,9 +44,21 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
                     </Col>
                 </Row>
                 <Row className="position-row">
-                    <Col className="position">{leftPosition}</Col>
-                    <Col className="position">{middlePosition}</Col>
-                    <Col className="position">{rightPosition}</Col>
+                    <Col className="position">
+                        <Button className="position-button" variant="secondary">/\</Button>
+                            {leftPosition}
+                        <Button className="position-button" variant="secondary">\/</Button>
+                    </Col>
+                    <Col className="position">
+                        <Button className="position-button" variant="secondary">/\</Button>
+                        {middlePosition}
+                        <Button className="position-button" variant="secondary">\/</Button>
+                    </Col>
+                    <Col className="position">
+                        <Button className="position-button" variant="secondary">/\</Button>
+                        {rightPosition}
+                        <Button className="position-button" variant="secondary">\/</Button>
+                    </Col>
                 </Row>
             </Container>
         </Container>
