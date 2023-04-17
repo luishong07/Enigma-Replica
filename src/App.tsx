@@ -4,7 +4,7 @@ import Lampboard from "./Lampboard";
 import Rotors from "./Rotors";
 import Plugboard from "./Plugboard";
 
-const App:React.FC = () => {
+const App: React.FC = () => {
 	const letters = /^[a-zA-Z]$/
 	const [input, setInput] = useState<string>("")
 	const [isKeyUp, setIsKeyUp] = useState<boolean>(false)
@@ -16,15 +16,15 @@ const App:React.FC = () => {
 	const handler = (e: KeyboardEvent) => {
 		// console.log(e)
 
-		if(!e.key.match(letters)){
+		if (!e.key.match(letters)) {
 			alert('Not a Letter')
-		}else{
+		} else {
 			// console.log(e.key.toUpperCase())
 			setIsKeyUp(false)
 			setInput(e.key.toUpperCase())
 		}
 	}
-	onkeyup = (e)=>{//this is controlling the lit up styling for the keys
+	onkeyup = (e) => {//this is controlling the lit up styling for the keys
 		setIsKeyUp(true)
 		setInput("")
 	}
@@ -33,23 +33,43 @@ const App:React.FC = () => {
 		window.addEventListener("keydown", encript)
 
 		return () => window.removeEventListener("keydown", handler)
-	}, [input ])
+	}, [input])
 
 	// onkeydown = ()=>{//
 	// 	if(!isKeyUp)
 	// 	console.log('help')
 	// }
 
-	const encript = (e: KeyboardEvent)=>{//this runs only once regardless of key being continuosly being pressed
-		if(!e.repeat){
-			console.log('test')
+	const encript = (e: KeyboardEvent) => {//this runs only once regardless of key being continuosly being pressed
+		if (!e.repeat) {
+			setRightPosition(rightPosition + 1)
+			if (rightPosition >= 25) {
+				setRightPosition(0)
+				setMiddlePosition(middlePosition + 1)
+			}
+			if (rightPosition < 0) {
+				setRightPosition(25)
+			}
+
+			if (middlePosition >= 25) {
+				setMiddlePosition(0)
+				setLeftPosition(leftPosition + 1)
+			}
+
+			if (leftPosition >= 25) {
+				setLeftPosition(0)
+			}
+
+
+
+
 		}
 	}
 
 	return (
 		<div className="App">
-			<Rotors leftPosition={leftPosition} middlePosition={middlePosition} rightPosition={rightPosition}/>
-			<Lampboard encryptedLetter={input} isKeyUp={isKeyUp}/>
+			<Rotors leftPosition={leftPosition} middlePosition={middlePosition} rightPosition={rightPosition} />
+			<Lampboard encryptedLetter={input} isKeyUp={isKeyUp} />
 			<Plugboard />
 		</div>
 	);
