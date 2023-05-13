@@ -39,3 +39,15 @@
 .position-button{
     width: 5rem;
 }
+.up{
+    background-image:  url(increaseButton.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 1rem;
+}
+.down{
+    background-image:  url(decreaseButton.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 1rem;
+}
