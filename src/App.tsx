@@ -5,7 +5,7 @@ import Rotors from "./Rotors";
 import Plugboard from "./Plugboard";
 
 const App: React.FC = () => {
-	const letters = /^[a-zA-Z]$/
+	const letters: RegExp = /^[a-zA-Z]$/
 	const [input, setInput] = useState<string>("")
 	const [isKeyUp, setIsKeyUp] = useState<boolean>(false)
 	const [rightPosition, setRightPosition] = useState<number>(0)

@@ -10,9 +10,9 @@ interface Props {
 }
 
 const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp }: Props) => {
-    const firstRow = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"]
-    const secondRow = ["A", "S", "D", "F", "G", "H", "J", "K", "L"]
-    const thirdRow = ["Z", "X", "C", "V", "B", "N", "M"]
+    const firstRow: string[] = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"]
+    const secondRow: string[] = ["A", "S", "D", "F", "G", "H", "J", "K", "L"]
+    const thirdRow: string[] = ["Z", "X", "C", "V", "B", "N", "M"]
 
     useEffect(() => {
         // console.log('onMount')
