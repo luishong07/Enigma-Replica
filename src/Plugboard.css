@@ -19,11 +19,18 @@
 
 }
 .letter-pair-container{
+    /* outline: red 1px solid; */
     display: flex;
     flex-direction: column;
     /* justify-content: space-evenly; */
+    /* width: 100%; */
+    margin: .75rem;
+
+    /* text-align: center; */
+    /* line-height:  */
 
 }
 .letter-pair-container > input{
-    width: 1ch;
+    width: calc(10px + 2vmin);
+
 }
