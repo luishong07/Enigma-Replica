@@ -3,6 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './Lampboard.css'
 import { useEffect } from 'react';
+import { Stack } from 'react-bootstrap';
 
 interface Props {
     encryptedLetter: string,
@@ -20,30 +21,46 @@ const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp }: Props) => {
     }, [])
 
     return (
-
-        <Container fluid className="base">
-            <Row className="lamp-row">
-                {
-                    firstRow.map(e => {
-                        return <Col className={`flex-item ${(encryptedLetter === e && !isKeyUp) ? 'lit' : ""}`} as={"span"} key={e}>{e}</Col>
-                    })
-                }
-            </Row>
-            <Row className="lamp-row">
-                {
-                    secondRow.map(e => {
-                        return <Col className={`flex-item ${(encryptedLetter === e && !isKeyUp) ? 'lit' : ""}`} as={"span"} key={e}>{e}</Col>
-                    })
-                }
-            </Row>
-            <Row className="lamp-row">
-                {
-                    thirdRow.map(e => {
-                        return <Col className={`flex-item ${(encryptedLetter === e && !isKeyUp) ? 'lit' : ""}`} as={"span"} key={e}>{e}</Col>
-                    })
-                }
-            </Row>
+        <Container fluid className='base d-grid gap-3'>
+            <Stack className='lamp-row' direction='horizontal' >
+                {firstRow.map(e => {
+                    return <h3>{e}</h3>
+                })}
+            </Stack>
+            <Stack className='lamp-row' direction='horizontal' >
+                {secondRow.map(e => {
+                    return <h3>{e}</h3>
+                })}
+            </Stack>
+            <Stack className='lamp-row' direction='horizontal' >
+                {thirdRow.map(e => {
+                    return <h3>{e}</h3>
+                })}
+            </Stack>
         </Container>
+        // <Container fluid className="base">
+        //     <Row className="lamp-row">
+        //         {
+        //             firstRow.map(e => {
+        //                 return <Col className={`flex-item ${(encryptedLetter === e && !isKeyUp) ? 'lit' : ""}`} as={"span"} key={e}>{e}</Col>
+        //             })
+        //         }
+        //     </Row>
+        //     <Row className="lamp-row">
+        //         {
+        //             secondRow.map(e => {
+        //                 return <Col className={`flex-item ${(encryptedLetter === e && !isKeyUp) ? 'lit' : ""}`} as={"span"} key={e}>{e}</Col>
+        //             })
+        //         }
+        //     </Row>
+        //     <Row className="lamp-row">
+        //         {
+        //             thirdRow.map(e => {
+        //                 return <Col className={`flex-item ${(encryptedLetter === e && !isKeyUp) ? 'lit' : ""}`} as={"span"} key={e}>{e}</Col>
+        //             })
+        //         }
+        //     </Row>
+        // </Container>
     );
 }
 
