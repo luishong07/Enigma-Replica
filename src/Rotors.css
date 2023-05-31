@@ -1,43 +1,46 @@
 .rotor-container{
-    outline:  red solid 1px;
-    background-color: #282c34;
-    min-height: 25vh;
     /* display: flex; */
     /* flex-direction: column; */
     /* align-items: center; */
     /* justify-content: center; */
+    outline:  red solid 1px;
+    background-color: #282c34;
+    /* height: 25vh; */
     font-size: calc(10px + 2vmin);
     color: white;
 }
 
 .positions{
-    display: flex;
+    /* width: 50vw;
+    background-color: red */
+    /* display: flex;
     flex-direction: column;
     padding: 1rem 0;
     height: 25vh;
     width: 40vw;
-    outline: red solid 1px;
+    outline: red solid 1px; */
 }
 .position-row{
-    justify-content: space-evenly;
+    /* justify-content: space-evenly;
     list-style: none;
     display: flex;
     align-items: center;
-    height: calc(25vh / 3);
+    height: calc(25vh / 3); */
 }
 .position{
 
-    display: flex;
+    /* display: flex;
     flex-flow: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }
 .rotor-selector{
-    width: 5rem;
+    /* width: 1rem; */
+    
     
 }
 .position-button{
-    width: 5rem;
+    /* width: 5rem; */
 }
 .up{
     background-image:  url(increaseButton.svg);

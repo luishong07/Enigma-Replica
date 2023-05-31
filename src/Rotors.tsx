@@ -18,25 +18,25 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
 
 
     return (
-        <Container fluid className="rotor-container">
-            <Container className="positions">
+        <Container fluid className="rotor-container h-25">
+            <Container className="positions w-50">
                 <Row className="position-row">
                     <Col className="position">
-                        <Form.Select className="rotor-selector" >
+                        <Form.Select className="rotor-selector mt-3 w-50 mx-auto" >
                             <option value="1">I</option>
                             <option value="2">II</option>
                             <option value="3">III</option>
                         </Form.Select>
                     </Col>
                     <Col className="position">
-                        <Form.Select className="rotor-selector" >
+                        <Form.Select className="rotor-selector mt-3 w-50 mx-auto" >
                             <option value="1">I</option>
                             <option value="2">II</option>
                             <option value="3">III</option>
                         </Form.Select>
                     </Col>
                     <Col className="position">
-                        <Form.Select className="rotor-selector" >
+                        <Form.Select className="rotor-selector mt-3 w-50 mx-auto" >
                             <option value="1">I</option>
                             <option value="2">II</option>
                             <option value="3">III</option>

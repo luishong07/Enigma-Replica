@@ -5,7 +5,7 @@ const Plugboard: React.FC = () => {
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
     return (
-        <div className="plugboard-container">
+        <div className="plugboard-container h-25">
             {
                 alphabet.map(letter => {
                     return <div className="letter-pair-container">

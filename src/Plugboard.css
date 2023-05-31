@@ -1,7 +1,7 @@
 .plugboard-container{
     outline:  red solid 1px;
     background-color: #282c34;
-    min-height: 25vh;
+    /* height: 25vh; */
     display: flex;
     flex-direction: row;
     align-items: center;

@@ -21,7 +21,7 @@ const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp }: Props) => {
     }, [])
 
     return (
-        <Container fluid className='base d-grid gap-3'>
+        <Container fluid className='base d-grid h-50'>
             <Stack className='lamp-row' direction='horizontal' >
                 {firstRow.map(e => {
                     return <h3>{e}</h3>
