@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { Card } from "react-bootstrap";
 
 
 
@@ -18,7 +19,30 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
 
 
     return (
-        <Container fluid className="rotor-container h-25">
+        <Container fluid className="rotor-container h-25 py-3">
+
+            <Card  className="">
+                <Card.Body>
+                    <Card.Title>
+                        <div>Hello there</div>
+                    </Card.Title>
+                </Card.Body>
+            </Card>
+            <Card  className=" ">
+                <Card.Body>
+                    <Card.Title>
+                        <div>Hello there</div>
+                    </Card.Title>
+                </Card.Body>
+            </Card>
+            <Card  className=" ">
+                <Card.Body>
+                    <Card.Title>
+                        <div>Hello there</div>
+                    </Card.Title>
+                </Card.Body>
+            </Card>
+            {/* <Card className="bg-light w-25"></Card>
             <Container className="positions w-50">
                 <Row className="position-row">
                     <Col className="position">
@@ -67,6 +91,7 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
                     </Col>
                 </Row>
             </Container>
+            <Card className="bg-light w-25"></Card> */}
         </Container>
     )
 }

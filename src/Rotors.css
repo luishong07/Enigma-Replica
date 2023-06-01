@@ -3,6 +3,9 @@
     /* flex-direction: column; */
     /* align-items: center; */
     /* justify-content: center; */
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 1rem;
     outline:  red solid 1px;
     background-color: #282c34;
     /* height: 25vh; */
