@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Card } from "react-bootstrap";
+import { Card, Stack } from "react-bootstrap";
 
 
 
@@ -21,25 +21,34 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
     return (
         <Container fluid className="rotor-container h-25 py-3">
 
-            <Card  className="">
+            <Card className="">
                 <Card.Body>
-                    <Card.Title>
-                        <div>Hello there</div>
-                    </Card.Title>
+                    <div>Hello there</div>
                 </Card.Body>
             </Card>
-            <Card  className=" ">
-                <Card.Body>
-                    <Card.Title>
-                        <div>Hello there</div>
-                    </Card.Title>
-                </Card.Body>
+            <Card className="rotor-settings">
+                <Stack direction="horizontal" gap={2}>
+                    <Card className="m-auto">
+                        <Card.Body>
+                            <div>1</div>
+                        </Card.Body>
+                    </Card>
+                    <Card className="m-auto">
+                        <Card.Body>
+                            <div>2</div>
+                        </Card.Body>
+                    </Card>
+                    <Card className="m-auto">
+                        <Card.Body>
+                            <div>3</div>
+                        </Card.Body>
+                    </Card>
+                </Stack>
             </Card>
-            <Card  className=" ">
+
+            <Card className=" ">
                 <Card.Body>
-                    <Card.Title>
-                        <div>Hello there</div>
-                    </Card.Title>
+                    <div>Hello there</div>
                 </Card.Body>
             </Card>
             {/* <Card className="bg-light w-25"></Card>
