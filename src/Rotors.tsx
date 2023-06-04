@@ -27,20 +27,47 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
                 </Card.Body>
             </Card>
             <Card className="rotor-settings">
-                <Stack direction="horizontal" gap={2}>
+                <Stack className="my-auto" direction="horizontal" gap={2}>
                     <Card className="m-auto">
                         <Card.Body>
+                            <Card.Title>
+                                <Form.Select>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </Form.Select>
+                            </Card.Title>
+                            <Button>up</Button>
                             <div>1</div>
+                            <Button>down</Button>
                         </Card.Body>
                     </Card>
                     <Card className="m-auto">
                         <Card.Body>
+                            <Card.Title>
+                                <Form.Select>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </Form.Select>
+                            </Card.Title>
+                            <Button>up</Button>
                             <div>2</div>
+                            <Button>down</Button>
                         </Card.Body>
                     </Card>
                     <Card className="m-auto">
                         <Card.Body>
+                            <Card.Title>
+                                <Form.Select>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </Form.Select>
+                            </Card.Title>
+                            <Button>up</Button>
                             <div>3</div>
+                            <Button>down</Button>
                         </Card.Body>
                     </Card>
                 </Stack>
