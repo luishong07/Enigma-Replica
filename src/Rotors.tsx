@@ -19,61 +19,55 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
 
 
     return (
-        <Container fluid className="rotor-container h-25 py-3">
+        <Container fluid className="rotor-container h-25 ">
 
-            <Card className="">
+            <Card className=" py-auto my-3">
                 <Card.Body>
                     <div>Hello there</div>
                 </Card.Body>
             </Card>
-            <Card className="rotor-settings">
-                <Stack className="my-auto" direction="horizontal" gap={2}>
-                    <Card className="m-auto">
-                        <Card.Body>
-                            <Card.Title>
-                                <Form.Select>
+            {/* <Card className=" py-auto "> */}
+                <Stack className="" direction="horizontal" gap={2}>
+                    <Card className="mx-auto  ">
+                        <Card.Body className="py-2">
+                            <Form.Select>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
                                 </Form.Select>
-                            </Card.Title>
-                            <Button>up</Button>
-                            <div>1</div>
-                            <Button>down</Button>
+                            <Button>/\</Button>
+                            <div>{leftPosition}</div>
+                            <Button>\/</Button>
                         </Card.Body>
                     </Card>
-                    <Card className="m-auto">
-                        <Card.Body>
-                            <Card.Title>
+                    <Card className="mx-auto ">
+                        <Card.Body className="py-2">
                                 <Form.Select>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
                                 </Form.Select>
-                            </Card.Title>
-                            <Button>up</Button>
-                            <div>2</div>
-                            <Button>down</Button>
+                            <Button>/\</Button>
+                            <div>{middlePosition}</div>
+                            <Button>\/</Button>
                         </Card.Body>
                     </Card>
-                    <Card className="m-auto">
-                        <Card.Body>
-                            <Card.Title>
+                    <Card className="mx-auto ">
+                        <Card.Body className="py-2">
                                 <Form.Select>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
                                 </Form.Select>
-                            </Card.Title>
-                            <Button>up</Button>
-                            <div>3</div>
-                            <Button>down</Button>
+                            <Button>/\</Button>
+                            <div>{rightPosition}</div>
+                            <Button>\/</Button>
                         </Card.Body>
                     </Card>
                 </Stack>
-            </Card>
+            {/* </Card> */}
 
-            <Card className=" ">
+            <Card className=" py-auto my-3">
                 <Card.Body>
                     <div>Hello there</div>
                 </Card.Body>
