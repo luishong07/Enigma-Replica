@@ -21,13 +21,18 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
     return (
         <Container fluid className="rotor-container h-25 ">
 
-            <Card className=" py-auto my-3">
+            <Card className="  my-2">
                 <Card.Body>
                     <div>Hello there</div>
                 </Card.Body>
             </Card>
+            {/* <Card className="  my-2">
+                <Card.Body>
+                    <div>Hello there</div>
+                </Card.Body>
+            </Card> */}
             {/* <Card className=" py-auto "> */}
-                <Stack className="" direction="horizontal" gap={2}>
+                <Stack className="rotor-settings my-2" direction="horizontal" gap={2}>
                     <Card className="mx-auto  ">
                         <Card.Body className="py-2">
                             <Form.Select>
@@ -67,7 +72,7 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
                 </Stack>
             {/* </Card> */}
 
-            <Card className=" py-auto my-3">
+            <Card className="  my-2">
                 <Card.Body>
                     <div>Hello there</div>
                 </Card.Body>

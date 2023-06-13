@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import './Lampboard.css'
 import { useEffect } from 'react';
 import { Stack } from 'react-bootstrap';
+import Badge from 'react-bootstrap/Badge';
 
 interface Props {
     encryptedLetter: string,
@@ -24,17 +25,28 @@ const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp }: Props) => {
         <Container fluid className='base d-grid h-50'>
             <Stack className='lamp-row' direction='horizontal' >
                 {firstRow.map(e => {
-                    return <h3>{e}</h3>
+                    return <h1>
+                        <div  className='circle'>{e}</div>
+                        {/* <Badge className='circle' bg='secondary'>{e}</Badge> */}
+                    </h1>
+                    // return <span className='rounded-circle'>{e}</span>
                 })}
             </Stack>
             <Stack className='lamp-row' direction='horizontal' >
                 {secondRow.map(e => {
-                    return <h3>{e}</h3>
+                    return <h1>
+                        <div  className='circle'>{e}</div>
+                        {/* <Badge className='rounded-circle' bg='secondary'>{e}</Badge> */}
+                    </h1>                    // return <span>{e}</span>
                 })}
             </Stack>
             <Stack className='lamp-row' direction='horizontal' >
                 {thirdRow.map(e => {
-                    return <h3>{e}</h3>
+                    return <h1>
+                        <div  className='circle'>{e}</div>
+                        {/* <Badge className='rounded-circle' bg='secondary'>{e}</Badge> */}
+                    </h1>
+                    // return <span>{e}</span>
                 })}
             </Stack>
         </Container>
