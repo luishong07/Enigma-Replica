@@ -26,7 +26,7 @@ const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp }: Props) => {
             <Stack className='lamp-row' direction='horizontal' >
                 {firstRow.map(e => {
                     return <h1>
-                        <div  className='circle'>{e}</div>
+                        <div  className={`circle ${(encryptedLetter === e && !isKeyUp) ? 'lit' : "off"}`}>{e}</div>
                         {/* <Badge className='circle' bg='secondary'>{e}</Badge> */}
                     </h1>
                     // return <span className='rounded-circle'>{e}</span>
@@ -35,7 +35,7 @@ const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp }: Props) => {
             <Stack className='lamp-row' direction='horizontal' >
                 {secondRow.map(e => {
                     return <h1>
-                        <div  className='circle'>{e}</div>
+                        <div  className={`circle ${(encryptedLetter === e && !isKeyUp) ? 'lit' : "off"}`}>{e}</div>
                         {/* <Badge className='rounded-circle' bg='secondary'>{e}</Badge> */}
                     </h1>                    // return <span>{e}</span>
                 })}
@@ -43,7 +43,7 @@ const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp }: Props) => {
             <Stack className='lamp-row' direction='horizontal' >
                 {thirdRow.map(e => {
                     return <h1>
-                        <div  className='circle'>{e}</div>
+                        <div  className={`circle ${(encryptedLetter === e && !isKeyUp) ? 'lit' : "off"}`}>{e}</div>
                         {/* <Badge className='rounded-circle' bg='secondary'>{e}</Badge> */}
                     </h1>
                     // return <span>{e}</span>

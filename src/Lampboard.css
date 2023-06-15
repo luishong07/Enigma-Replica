@@ -57,12 +57,17 @@
 .lit {
     background: yellow;
 }
+.off{
+    background: white
+}
 .circle {
     width: 2em;
     height: 2em;
     border-radius: 50%;
-    background: #505359;
+    border: solid 5px black;
+    /* background: white; */
     display: flex;
     align-items: center;
     justify-content: center;
+    color: black;
 }
