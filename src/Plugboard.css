@@ -11,6 +11,7 @@
     font-size: calc(10px + 2vmin); */
     color: black;
     font-size: calc(7px + 2vmin);
+    min-height: 30dvh;
 
 }
 
@@ -35,5 +36,7 @@
 
 }
 .single-pair{
-    border: solid rebeccapurple 1px;
+    background-color: aliceblue;
+    /* border: solid rebeccapurple 1px; */
+    border-radius: 0.375rem;
 }

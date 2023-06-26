@@ -6,6 +6,7 @@
     /* flex-direction: column; */
     font: arial;
     color: white;
+    min-height: 45dvh;
 }
 
 .row {
@@ -70,4 +71,8 @@
     align-items: center;
     justify-content: center;
     color: black;
+
+}
+.circle:hover{
+    cursor: default;
 }
