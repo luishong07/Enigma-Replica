@@ -69,6 +69,18 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
                             <Button>\/</Button>
                         </Card.Body>
                     </Card>
+                    <Card className="mx-auto ">
+                        <Card.Body className="py-2">
+                                <Form.Select>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </Form.Select>
+                            <Button>/\</Button>
+                            <div>{rightPosition}</div>
+                            <Button>\/</Button>
+                        </Card.Body>
+                    </Card>
                 </Stack>
             {/* </Card> */}
 

@@ -1,13 +1,17 @@
 .plugboard-container{
+    display: grid;
+    grid-template-columns: 1fr;
     outline:  red solid 1px;
     background-color: #282c34;
     /* height: 25vh; */
-    display: flex;
-    flex-direction: row;
+    /* display: flex; */
+    /* flex-direction: row;
     align-items: center;
     justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+    font-size: calc(10px + 2vmin); */
+    color: black;
+    font-size: calc(7px + 2vmin);
+
 }
 
 .plugboard-top{
@@ -19,18 +23,13 @@
 
 }
 .letter-pair-container{
-    /* outline: red 1px solid; */
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-evenly; */
-    /* width: 100%; */
-    margin: .75rem;
+    /* justify-content: space-between; */
+    background-color: grey;
+    border-radius: 0.375rem;
 
-    /* text-align: center; */
-    /* line-height:  */
-
+   
 }
-.letter-pair-container > input{
+ input{
     width: calc(10px + 2vmin);
 
 }
