@@ -11,18 +11,15 @@ const Plugboard: React.FC = () => {
     // const alphabet: string[] = ["A"]
 
     return (
-        <Container fluid className="plugboard-container h-25">
-            <Stack className="letter-pair-container " direction="horizontal" gap={1}>
-                {alphabet.map(letter => {
-                    return <Card className="mx-auto">
-                            <Card.Body className="px-2 ">
-                                <div>{letter}</div>
-                                <div>svg</div>
-                                <input/>
-                            </Card.Body>
-                        </Card>
+        <Container fluid className="plugboard-container h-25 py-3">
+            <Stack className="letter-pair-container " direction="horizontal" >
+                {alphabet.map(letter =>{
+                    return <div className=" px-1 py-3 single-pair">
+                        <div>{letter}</div>
+                        <div className="my-2">svg</div>
+                        <input/>
+                    </div>
                 })}
-
             </Stack>
         </Container>
     )
