@@ -8,7 +8,6 @@ import { Stack } from 'react-bootstrap';
 
 const Plugboard: React.FC = () => {
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-    // const alphabet: string[] = ["A"]
 
     return (
         <Container fluid className="plugboard-container py-3">

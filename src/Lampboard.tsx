@@ -23,31 +23,29 @@ const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp }: Props) => {
 
     return (
         <Container fluid className='base d-grid'>
-            <Stack className='lamp-row' direction='horizontal' >
-                {firstRow.map(e => {
-                    return <h1>
-                        <div  className={`circle ${(encryptedLetter === e && !isKeyUp) ? 'lit' : "off"}`}>{e}</div>
-                        {/* <Badge className='circle' bg='secondary'>{e}</Badge> */}
-                    </h1>
-                    // return <span className='rounded-circle'>{e}</span>
-                })}
-            </Stack>
-            <Stack className='lamp-row' direction='horizontal' >
-                {secondRow.map(e => {
-                    return <h1>
-                        <div  className={`circle ${(encryptedLetter === e && !isKeyUp) ? 'lit' : "off"}`}>{e}</div>
-                        {/* <Badge className='rounded-circle' bg='secondary'>{e}</Badge> */}
-                    </h1>                    // return <span>{e}</span>
-                })}
-            </Stack>
-            <Stack className='lamp-row' direction='horizontal' >
-                {thirdRow.map(e => {
-                    return <h1>
-                        <div  className={`circle ${(encryptedLetter === e && !isKeyUp) ? 'lit' : "off"}`}>{e}</div>
-                        {/* <Badge className='rounded-circle' bg='secondary'>{e}</Badge> */}
-                    </h1>
-                    // return <span>{e}</span>
-                })}
+            <Stack className='lamp-rows-container' direction='vertical'>
+
+                <Stack className='lamp-row my-auto' direction='horizontal' >
+                    {firstRow.map(e => {
+                        return <h1>
+                            <div className={`circle ${(encryptedLetter === e && !isKeyUp) ? 'lit' : "off"}`}>{e}</div>
+                        </h1>
+                    })}
+                </Stack>
+                <Stack className='lamp-row my-auto' direction='horizontal' >
+                    {secondRow.map(e => {
+                        return <h1>
+                            <div className={`circle ${(encryptedLetter === e && !isKeyUp) ? 'lit' : "off"}`}>{e}</div>
+                        </h1>
+                    })}
+                </Stack>
+                <Stack className='lamp-row my-auto' direction='horizontal' >
+                    {thirdRow.map(e => {
+                        return <h1>
+                            <div className={`circle ${(encryptedLetter === e && !isKeyUp) ? 'lit' : "off"}`}>{e}</div>
+                        </h1>
+                    })}
+                </Stack>
             </Stack>
         </Container>
         // <Container fluid className="base">

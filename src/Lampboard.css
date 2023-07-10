@@ -37,6 +37,7 @@
     /* height: calc(50vh / 3); */
 }
 
+
 .flex-item {
     display: flex;
     align-items: center;
@@ -75,4 +76,10 @@
 }
 .circle:hover{
     cursor: default;
+}
+
+.lamp-rows-container{
+    background: grey;
+    border-radius: 2em
+
 }

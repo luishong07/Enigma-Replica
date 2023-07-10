@@ -1,7 +1,7 @@
 .plugboard-container{
     display: grid;
     /* grid-template-columns: 1fr; */
-    outline:  red solid 1px;
+    /* outline:  red solid 1px; */
     background-color: #282c34;
     /* height: 25vh; */
     /* display: flex; */
@@ -19,10 +19,7 @@
     outline:  red solid 1px;
 
 }
-.plugboard-bottom{
-    outline:  red solid 1px;
 
-}
 .letter-pair-container{
     justify-content: space-evenly;
     background-color: rgb(91, 91, 91);
