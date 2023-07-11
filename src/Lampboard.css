@@ -80,6 +80,7 @@
 
 .lamp-rows-container{
     background: grey;
-    border-radius: 2em
-
+    border-radius: 2em;
+    /* padding:  auto 0; */
+    
 }

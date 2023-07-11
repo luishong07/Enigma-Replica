@@ -23,23 +23,23 @@ const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp }: Props) => {
 
     return (
         <Container fluid className='base d-grid'>
-            <Stack className='lamp-rows-container' direction='vertical'>
+            <Stack className='lamp-rows-container my-auto mx-3' direction='vertical'>
 
-                <Stack className='lamp-row my-auto' direction='horizontal' >
+                <Stack className='lamp-row my-2' direction='horizontal' >
                     {firstRow.map(e => {
                         return <h1>
                             <div className={`circle ${(encryptedLetter === e && !isKeyUp) ? 'lit' : "off"}`}>{e}</div>
                         </h1>
                     })}
                 </Stack>
-                <Stack className='lamp-row my-auto' direction='horizontal' >
+                <Stack className='lamp-row my-2' direction='horizontal' >
                     {secondRow.map(e => {
                         return <h1>
                             <div className={`circle ${(encryptedLetter === e && !isKeyUp) ? 'lit' : "off"}`}>{e}</div>
                         </h1>
                     })}
                 </Stack>
-                <Stack className='lamp-row my-auto' direction='horizontal' >
+                <Stack className='lamp-row my-2' direction='horizontal' >
                     {thirdRow.map(e => {
                         return <h1>
                             <div className={`circle ${(encryptedLetter === e && !isKeyUp) ? 'lit' : "off"}`}>{e}</div>
