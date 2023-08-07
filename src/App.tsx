@@ -3,7 +3,7 @@ import "./App.css";
 import Lampboard from "./Lampboard";
 import Rotorboard from "./Rotorboard";
 import Plugboard from "./Plugboard";
-
+import { Rotors } from "./Rotors";
 const App: React.FC = () => {
 	const letters: RegExp = /^[a-zA-Z]$/
 	const [input, setInput] = useState<string>("")
@@ -12,14 +12,12 @@ const App: React.FC = () => {
 	const [middlePosition, setMiddlePosition] = useState<number>(0)
 	const [leftPosition, setLeftPosition] = useState<number>(0)
 
-
 	const handler = (e: KeyboardEvent) => {
 		// console.log(e)
 
 		if (!e.key.match(letters)) {
 			alert('Not a Letter')
 		} else {
-			// console.log(e.key.toUpperCase())
 			setIsKeyUp(false)
 			setInput(e.key.toUpperCase())
 		}
@@ -42,6 +40,9 @@ const App: React.FC = () => {
 
 	const encript = (e: KeyboardEvent) => {//this runs only once regardless of key being continuosly being pressed
 		if (!e.repeat) {
+			// console.log('poop')
+			console.log(e.key.toUpperCase())
+
 			setRightPosition(rightPosition + 1)
 			if (rightPosition >= 25) {
 				setRightPosition(0)
@@ -59,7 +60,7 @@ const App: React.FC = () => {
 			if (leftPosition >= 25) {
 				setLeftPosition(0)
 			}
-
+			
 
 
 
