@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Lampboard from "./Lampboard";
-import Rotors from "./Rotors";
+import Rotorboard from "./Rotorboard";
 import Plugboard from "./Plugboard";
 
 const App: React.FC = () => {
@@ -68,7 +68,7 @@ const App: React.FC = () => {
 
 	return (
 		<div className="App">
-			<Rotors leftPosition={leftPosition} middlePosition={middlePosition} rightPosition={rightPosition} />
+			<Rotorboard leftPosition={leftPosition} middlePosition={middlePosition} rightPosition={rightPosition} />
 			<Lampboard encryptedLetter={input} isKeyUp={isKeyUp} />
 			<Plugboard />
 		</div>

@@ -1,10 +1,10 @@
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+// import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
 import './Lampboard.css'
 import { useEffect } from 'react';
 import { Stack } from 'react-bootstrap';
-import Badge from 'react-bootstrap/Badge';
+// import Badge from 'react-bootstrap/Badge';
 
 interface Props {
     encryptedLetter: string,
@@ -27,21 +27,21 @@ const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp }: Props) => {
 
                 <Stack className='lamp-row my-2' direction='horizontal' >
                     {firstRow.map(e => {
-                        return <h1>
+                        return <h1 key={e}>
                             <div className={`circle ${(encryptedLetter === e && !isKeyUp) ? 'lit' : "off"}`}>{e}</div>
                         </h1>
                     })}
                 </Stack>
                 <Stack className='lamp-row my-2' direction='horizontal' >
                     {secondRow.map(e => {
-                        return <h1>
+                        return <h1 key={e}>
                             <div className={`circle ${(encryptedLetter === e && !isKeyUp) ? 'lit' : "off"}`}>{e}</div>
                         </h1>
                     })}
                 </Stack>
                 <Stack className='lamp-row my-2' direction='horizontal' >
                     {thirdRow.map(e => {
-                        return <h1>
+                        return <h1 key={e}>
                             <div className={`circle ${(encryptedLetter === e && !isKeyUp) ? 'lit' : "off"}`}>{e}</div>
                         </h1>
                     })}
