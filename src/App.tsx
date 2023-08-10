@@ -21,10 +21,7 @@ const App: React.FC = () => {
 			setInput(e.key.toUpperCase())
 		}
 	}
-	onkeyup = (e) => {//this is controlling the lit up styling for the keys
-		setIsKeyUp(true)
-		setInput("")
-	}
+
 
 
 	// onkeydown = ()=>{//
@@ -58,17 +55,18 @@ const App: React.FC = () => {
 		}
 	}
 
-	useEffect(() => {
-		window.addEventListener("keydown", handler)
-		window.addEventListener("keydown", encript)
-
-		return () => window.removeEventListener("keydown", handler)
-	}, [input, handler, encript])
+	
 
 	return (
 		<div className="App">
-			<Rotorboard leftPosition={leftPosition} middlePosition={middlePosition} rightPosition={rightPosition} />
-			<Lampboard encryptedLetter={input} isKeyUp={isKeyUp} />
+			<Rotorboard 
+				leftPosition={leftPosition} 
+				middlePosition={middlePosition} 
+				rightPosition={rightPosition} />
+			<Lampboard 
+				encryptedLetter={input} 
+				isKeyUp={isKeyUp} 
+				/>
 			<Plugboard />
 		</div>
 	);

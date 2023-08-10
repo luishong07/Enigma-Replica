@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Card, Stack } from "react-bootstrap";
+import { useState } from "react";
 
 
 
@@ -16,6 +17,8 @@ interface Props {
 }
 
 const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }: Props) => {
+    const [message, setMessage] = useState('')
+
 
 
     return (
@@ -25,7 +28,15 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
                 <Card.Body>
                     <div>Your Message</div>
                     <div>
-                        <input type="text" />
+                        <form>
+                            <input
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                                type="text"
+                                placeholder="Enter your message here"
+                            />
+
+                        </form>
                     </div>
                 </Card.Body>
             </Card>
@@ -83,6 +94,7 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
             <Card className="  my-2">
                 <Card.Body>
                     <div>Your Encrypted Message</div>
+                    <p className="encrypted-message">{message}</p>
                 </Card.Body>
             </Card>
         </Container>

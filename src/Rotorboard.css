@@ -63,3 +63,8 @@
     /* border-radius: 0.375rem; */
     /* border: solid rgba(0, 0, 0, 0.5) 1px; */
 }
+
+.encrypted-message{
+    width: 20ch;
+    margin: auto;
+}
