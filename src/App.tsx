@@ -13,7 +13,6 @@ const App: React.FC = () => {
 	const [leftPosition, setLeftPosition] = useState<number>(0)
 
 	const handler = (e: KeyboardEvent) => {
-		// console.log(e)
 
 		if (!e.key.match(letters)) {
 			alert('Not a Letter')
@@ -26,23 +25,18 @@ const App: React.FC = () => {
 		setIsKeyUp(true)
 		setInput("")
 	}
-	useEffect(() => {
-		window.addEventListener("keydown", handler)
-		window.addEventListener("keydown", encript)
 
-		return () => window.removeEventListener("keydown", handler)
-	}, [input])
 
 	// onkeydown = ()=>{//
 	// 	if(!isKeyUp)
 	// 	console.log('help')
 	// }
 
+	//bug: after the first keypress the following pressed register several times, many times
 	const encript = (e: KeyboardEvent) => {//this runs only once regardless of key being continuosly being pressed
-		if (!e.repeat) {
-			// console.log('poop')
-			console.log(e.key.toUpperCase())
 
+		if (!e.repeat) {
+			// console.log(e.key.toUpperCase())
 			setRightPosition(rightPosition + 1)
 			if (rightPosition >= 25) {
 				setRightPosition(0)
@@ -60,12 +54,16 @@ const App: React.FC = () => {
 			if (leftPosition >= 25) {
 				setLeftPosition(0)
 			}
-			
-
-
 
 		}
 	}
+
+	useEffect(() => {
+		window.addEventListener("keydown", handler)
+		window.addEventListener("keydown", encript)
+
+		return () => window.removeEventListener("keydown", handler)
+	}, [input, handler, encript])
 
 	return (
 		<div className="App">

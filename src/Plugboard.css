@@ -33,7 +33,7 @@
 
     border-radius: 0.375rem;
 }
-input {
+.plug {
     width: calc(10px + 2vmin);
     text-transform: uppercase;
 

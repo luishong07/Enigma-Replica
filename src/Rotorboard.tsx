@@ -23,7 +23,10 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
 
             <Card className="  my-2">
                 <Card.Body>
-                    <div>Hello there</div>
+                    <div>Your Message</div>
+                    <div>
+                        <input type="text" />
+                    </div>
                 </Card.Body>
             </Card>
             <Stack className="rotor-settings my-2" direction="horizontal" gap={2}>
@@ -79,7 +82,7 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
 
             <Card className="  my-2">
                 <Card.Body>
-                    <div>Hello there</div>
+                    <div>Your Encrypted Message</div>
                 </Card.Body>
             </Card>
         </Container>
