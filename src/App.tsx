@@ -30,7 +30,7 @@ const App: React.FC = () => {
 	// }
 
 	//bug: after the first keypress the following pressed register several times, many times
-	const encript = (e: KeyboardEvent) => {//this runs only once regardless of key being continuosly being pressed
+	const clockRotation = (e: KeyboardEvent) => {//this runs only once regardless of key being continuosly being pressed
 
 		if (!e.repeat) {
 			// console.log(e.key.toUpperCase())

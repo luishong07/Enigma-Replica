@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Card, Stack } from "react-bootstrap";
 import { useState } from "react";
+import { log } from "console";
 
 
 
@@ -17,9 +18,61 @@ interface Props {
 }
 
 const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }: Props) => {
-    const [message, setMessage] = useState('')
+    const letters: RegExp = /^[a-zA-Z]$/
+
+    const [inputLetter, setInputLetter] = useState('')
+    const [message, setMessage] = useState('')//input message from user
+    const [encryptedMessage, setEncryptedMessage] = useState('')//encrypted message
+    const alphabet: String[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
 
+    const [isKeyPressed, setIsKeyPressed] = useState(false);
+
+    const handleKeyDown = (event:any) => {
+        // if (event.key === 'Enter') {
+        //     console.log('Enter key pressed');
+        // }
+        // console.log('key is being pressed!!',isKeyPressed)
+
+        if (!isKeyPressed) {
+            setIsKeyPressed(true);
+            console.log('once');
+            
+            // Start your continuous action or handle the key press event
+        }
+    };
+
+    const handleKeyUp = (event:any) => {
+        // if (event.key === 'Enter') {
+        //     console.log('Enter key released');
+        // }
+        // console.log("key released!!",isKeyPressed);
+        
+
+        if (isKeyPressed) {
+            setIsKeyPressed(false);
+            // Stop your continuous action or handle the key release event
+        }
+    };
+
+    const checkValidKey = (e: any) => {
+        if(isKeyPressed){
+
+        }
+        // if(e.key.match(letters)){
+        //     console.log("mathch!!");
+        // }else{
+        //     console.log("no match :(");
+
+        // }
+        // console.log(e)
+        // const currentMessage = e.target.value.toUpperCase()
+
+        // console.log(currentMessage[currentMessage.length-1])
+        // setMessage(currentMessage)
+        // let randomIndex = Math.floor(Math.random() * alphabet.length)
+        // setEncryptedMessage(encryptedMessage+alphabet[randomIndex])
+    }
 
     return (
         <Container fluid className="rotor-container ">
@@ -30,9 +83,14 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
                     <div>
                         <textarea
                             className="message"
-                            value={message}
-                            onChange={(e) => setMessage(e.target.value)}
+                            defaultValue={message}
+                            // onKeyDown={(e) => checkValidKey(e)}
                             placeholder="Enter your message here"
+                            onKeyDown={(e) => {
+                                // checkValidKey(e) 
+                                handleKeyDown(e)}
+                            }
+                            onKeyUp={handleKeyUp}
                         />
                     </div>
                 </Card.Body>
@@ -97,10 +155,10 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
             <Card className="  my-2">
                 <Card.Body>
                     <div>Your Encrypted Message</div>
-                    <textarea 
-                        readOnly 
-                        className="encrypted-message" 
-                        value={message} placeholder="Your encrypted message"
+                    <textarea
+                        readOnly
+                        className="encrypted-message"
+                        value={encryptedMessage} placeholder="Your encrypted message"
                     />
                 </Card.Body>
             </Card>
