@@ -6,67 +6,105 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Card, Stack } from "react-bootstrap";
 import { useState } from "react";
-import { log } from "console";
+import { Rotors } from "./Rotors";
+
 
 
 
 // import Modal from 'react-bootstrap/Modal';
 interface Props {
-    leftPosition: number,
-    middlePosition: number,
-    rightPosition: number
+    // leftPosition: number,
+    // middlePosition: number,
+    // rightPosition: number
 }
 
-const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }: Props) => {
-    const letters: RegExp = /^[a-zA-Z]$/
-    const alphabet: String[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+const Rotorboard: React.FC<Props> = () => {
+    // const letters: RegExp = /^[a-zA-Z]$/
+    // const alphabet: String[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    // console.log(Rotors)
+    const rotors = Rotors
+    const [rightPosition, setRightPosition] = useState<number>(0)
+	const [middlePosition, setMiddlePosition] = useState<number>(0)
+	const [leftPosition, setLeftPosition] = useState<number>(0)
 
-    const [inputLetter, setInputLetter] = useState('')
+    // const [inputLetter, setInputLetter] = useState('')
     const [message, setMessage] = useState('')//input message from user
     const [encryptedMessage, setEncryptedMessage] = useState('')//encrypted message
-    const [isKeyPressed, setIsKeyPressed] = useState(false);
+    // const [isKeyPressed, setIsKeyPressed] = useState(false);
 
-    
+
+    const clockRotation = () => {//this runs only once regardless of key being continuosly being pressed
+
+		// if (!e.repeat) {
+			// console.log(e.key.toUpperCase())
+			setRightPosition(rightPosition + 1)
+			if (rightPosition >= 25) {
+				setRightPosition(0)
+				setMiddlePosition(middlePosition + 1)
+			}
+			if (rightPosition < 0) {
+				setRightPosition(25)
+			}
+
+			if (middlePosition >= 25) {
+				setMiddlePosition(0)
+				setLeftPosition(leftPosition + 1)
+			}
+
+			if (leftPosition >= 25) {
+				setLeftPosition(0)
+			}
+
+		// }
+	}
 
     const handleKeyDown = (event:any) => {
+        const letter = event.key.toUpperCase()
+        if(!event.repeat){// if key is not held down; almost everything should happen inside this is statement
+            clockRotation()
+            setMessage("")
+
+            console.log(leftPosition, middlePosition, rightPosition)
+        }
         // if (event.key === 'Enter') {
         //     console.log('Enter key pressed');
         // }
-
-        if (!isKeyPressed) {
-            console.log("once");
+        // console.log(event)
+        // if (!isKeyPressed) {
+        //     console.log("once");
         
-            setIsKeyPressed(true);
-            if(!alphabet.includes(event.key.toUpperCase())){//if key is not a capital letter, do nothing
-                console.log("poop")
-                return
-            }else{//else add letter to message
-                setMessage(message+event.key.toString())
+        //     setIsKeyPressed(true);
+        //     if(!alphabet.includes(event.key.toUpperCase())){//if key is not a capital letter, do nothing
+        //         console.log("poop")
+        //         return
+        //     }else{//else add letter to message
+        //         setMessage(message+event.key.toString())
                 
-            }
+        //     }
 
             
-            // Start your continuous action or handle the key press event
-        }
+        //     // Start your continuous action or handle the key press event
+        // }
     };
 
-    const handleKeyUp = (event:any) => {
-        // if (event.key === 'Enter') {
-        //     console.log('Enter key released');
-        // }
-        // console.log("key released!!",isKeyPressed);
+    // const handleKeyUp = (event:any) => {
+    //     // if (event.key === 'Enter') {
+    //     //     console.log('Enter key released');
+    //     // }
+    //     // console.log("key released!!",isKeyPressed);
         
 
-        if (isKeyPressed) {
-            setIsKeyPressed(false);
-            // Stop your continuous action or handle the key release event
-        }
-    };
+    //     if (isKeyPressed) {
+    //         setIsKeyPressed(false);
+    //         // Stop your continuous action or handle the key release event
+    //     }
+    // };
 
-    const checkValidKey = (e: any) => {
-        if(isKeyPressed){
+    const checkValidKey = (event:any) => {
+        console.log(event)
+        // if(isKeyPressed){
 
-        }
+        // }
         // if(e.key.match(letters)){
         //     console.log("mathch!!");
         // }else{
@@ -94,14 +132,9 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
                             value={message}
                             // onKeyDown={(e) => checkValidKey(e)}
                             placeholder="Enter your message here"
-                            onChange={(e)=> {}}
-                            onKeyDown={(e) => {
-                                // checkValidKey(e) 
-                                handleKeyDown(e)
-                                // console.log(message)
-                            }
-                            }
-                            onKeyUp={handleKeyUp}
+                            onChange={()=>{}}
+                            onKeyDown={(e) => {handleKeyDown(e)}}
+                            // onKeyUp={handleKeyUp}
                         />
                     </div>
                 </Card.Body>
@@ -177,4 +210,4 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
     )
 }
 
-export default Rotors
+export default Rotorboard
