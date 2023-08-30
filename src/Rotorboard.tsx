@@ -19,24 +19,32 @@ interface Props {
 
 const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }: Props) => {
     const letters: RegExp = /^[a-zA-Z]$/
+    const alphabet: String[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
     const [inputLetter, setInputLetter] = useState('')
     const [message, setMessage] = useState('')//input message from user
     const [encryptedMessage, setEncryptedMessage] = useState('')//encrypted message
-    const alphabet: String[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-
-
     const [isKeyPressed, setIsKeyPressed] = useState(false);
+
+    
 
     const handleKeyDown = (event:any) => {
         // if (event.key === 'Enter') {
         //     console.log('Enter key pressed');
         // }
-        // console.log('key is being pressed!!',isKeyPressed)
 
         if (!isKeyPressed) {
+            console.log("once");
+        
             setIsKeyPressed(true);
-            console.log('once');
+            if(!alphabet.includes(event.key.toUpperCase())){//if key is not a capital letter, do nothing
+                console.log("poop")
+                return
+            }else{//else add letter to message
+                setMessage(message+event.key.toString())
+                
+            }
+
             
             // Start your continuous action or handle the key press event
         }
@@ -83,12 +91,15 @@ const Rotors: React.FC<Props> = ({ leftPosition, middlePosition, rightPosition }
                     <div>
                         <textarea
                             className="message"
-                            defaultValue={message}
+                            value={message}
                             // onKeyDown={(e) => checkValidKey(e)}
                             placeholder="Enter your message here"
+                            onChange={(e)=> {}}
                             onKeyDown={(e) => {
                                 // checkValidKey(e) 
-                                handleKeyDown(e)}
+                                handleKeyDown(e)
+                                // console.log(message)
+                            }
                             }
                             onKeyUp={handleKeyUp}
                         />
