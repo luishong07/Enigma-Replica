@@ -35,6 +35,9 @@ const Rotorboard: React.FC<Props> = () => {
     const [rightPosition, setRightPosition] = useState<number>(Math.floor(Math.random()*25))
     const [middlePosition, setMiddlePosition] = useState<number>(Math.floor(Math.random()*25))
     const [leftPosition, setLeftPosition] = useState<number>(Math.floor(Math.random()*25))
+    // const [rightPosition, setRightPosition] = useState<number>(0)
+    // const [middlePosition, setMiddlePosition] = useState<number>(0)
+    // const [leftPosition, setLeftPosition] = useState<number>(0)
 
     // const [inputLetter, setInputLetter] = useState('')
     const [message, setMessage] = useState('')//input message from user
@@ -107,25 +110,41 @@ const Rotorboard: React.FC<Props> = () => {
             clockRotation()
             setMessage(message + letter)
             const inputIndex = alphabet.indexOf(letter)//index of letter pressed
+
             const inputToRightDiff = rightPosition - 0// this is always zero since the input does not rotate: ;
+            const rightRotorOutput = currentRightRotor[checkOverflow(inputIndex+inputToRightDiff)]
+            console.log(`r-I=${rightPosition}-0`)
+            console.log(`rotorI[${inputIndex}+${inputToRightDiff}=${checkOverflow(inputIndex+inputToRightDiff)}]=${rightRotorOutput}=>${alphabet[rightRotorOutput]}`)
+            // console.log(inputIndex, inputToRightDiff,checkOverflow(inputIndex+ inputToRightDiff),alphabet[rightRotorOutput ])
 
-            const rightRotorOutput = currentRightRotor[checkOverflow(inputIndex+ inputToRightDiff)]
-            console.log(inputIndex, inputToRightDiff,alphabet[rightRotorOutput ])
+            const rightToMiddleDiff = middlePosition - rightPosition
+            const middleRotorOutput = currentMiddleRotor[checkOverflow(rightRotorOutput + rightToMiddleDiff)]
+            console.log(`m-r=${middlePosition}-${rightPosition}`)
+            console.log(`rotorII[${rightRotorOutput}+${rightToMiddleDiff}=${checkOverflow(rightRotorOutput + rightToMiddleDiff)}]=${middleRotorOutput}=>${alphabet[middleRotorOutput]}`)
+            // console.log(rightRotorOutput, rightToMiddleDiff,checkOverflow(rightRotorOutput + rightToMiddleDiff),alphabet[middleRotorOutput])
 
-            // const middleRotorOutput = currentMiddleRotor[rightRotorOutput]
-            // console.log(alphabet[middleRotorOutput])
+            const middleToLeftDiff = leftPosition - middlePosition
+            const leftRotorOutput = currentLeftRotor[checkOverflow(middleRotorOutput+ middleToLeftDiff)]
+            console.log(`l-m=${leftPosition}-${middlePosition}`)
+            console.log(`rotorIII[${middleRotorOutput}+${middleToLeftDiff}= ${checkOverflow(middleRotorOutput+ middleToLeftDiff)}]=${leftRotorOutput}=>${alphabet[leftRotorOutput]}`)
+            // console.log(middleRotorOutput, middleToLeftDiff,checkOverflow(middleRotorOutput+ middleToLeftDiff), alphabet[leftRotorOutput])
 
-            // const leftRotorOutput = currentLeftRotor[middleRotorOutput]
-            // console.log(alphabet[leftRotorOutput])
+            const leftToReflectorDiff = 0 - leftPosition
+            const reflectorOutput = reflector[checkOverflow(leftRotorOutput+leftToReflectorDiff)]
+            console.log(`R-l=0-${leftPosition}`)
+            console.log(`l-R=${leftPosition}-0`)
+            console.log(`reflector[${leftRotorOutput}+${leftToReflectorDiff}=${checkOverflow(leftRotorOutput+leftToReflectorDiff)}]=${reflectorOutput}+${leftPosition}-0=${reflectorOutput-leftPosition}`)
+            // console.log(leftRotorOutput,leftToReflectorDiff,checkOverflow(leftRotorOutput+leftToReflectorDiff),alphabet[reflectorOutput])
 
-            // const reflectorOutput = reflector[leftRotorOutput]
-            // console.log(alphabet[reflectorOutput])
+            const reflectorToLeftDiff = leftPosition - 0
+            const reflectorOutputReverse = reflectorOutput  + reflectorToLeftDiff
+            const reverseLeftRotorOutput = currentReverseLeftRotor[checkOverflow(reflectorOutputReverse)]
+            console.log(reverseLeftRotorOutput,reflectorToLeftDiff, alphabet[reverseLeftRotorOutput])
 
-            // const reverseLeftRotorOutput = currentReverseLeftRotor[reflectorOutput]
-            // console.log(alphabet[reverseLeftRotorOutput])
-
-            // const reverseMiddleRotorOutput = currentReverseMiddleRotor[reverseLeftRotorOutput]
-            // console.log(alphabet[reverseMiddleRotorOutput])
+            const leftToMiddleDiff = middlePosition - leftPosition
+            const reverseLeftOutputReverse = reverseLeftRotorOutput + leftToMiddleDiff
+            const reverseMiddleRotorOutput = currentReverseMiddleRotor[checkOverflow(reverseLeftOutputReverse)]
+            console.log(reverseMiddleRotorOutput,leftToMiddleDiff, alphabet[reverseMiddleRotorOutput])
 
             // const reverseRightRotorOutput = currentReverseRightRotor[reverseMiddleRotorOutput]
             // console.log(alphabet[reverseRightRotorOutput])
