@@ -22,29 +22,39 @@ const Rotorboard: React.FC<Props> = () => {
     // const letters: RegExp = /^[a-zA-Z]$/
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     // console.log(Rotors)
+    const generateRandomRotorPosition = (): number => {
+        let randomPosition: number = Math.floor(Math.random() * 25)
+        return randomPosition
+    }
+    const selectRandomRotors = ()=>{
+        const allRotors = ["I","II","III","IV","V"]
+        // const selectedRotors = 
+    }
     const { reflector }: any = Rotors
-
-    const [currentRightRotor, setCurrentRightRotor] = useState<number[]>(Rotors.rotorI)
+    // current arrays of numbers for rotors 
+    const [currentRightRotor, setCurrentRightRotor] = useState<number[]>(Rotors['rotorI'])
     const [currentMiddleRotor, setCurrentMiddleRotor] = useState<number[]>(Rotors.rotorII)
     const [currentLeftRotor, setCurrentLeftRotor] = useState<number[]>(Rotors.rotorIII)
-    ///set same variables and functions as above for reverse rotors
+    // reverse versions of current rotors
     const [currentReverseRightRotor, setCurrentReverseRightRotor] = useState<number[]>(Rotors.reverseI)
     const [currentReverseMiddleRotor, setCurrentReverseMiddleRotor] = useState<number[]>(Rotors.reverseII)
     const [currentReverseLeftRotor, setCurrentReverseLeftRotor] = useState<number[]>(Rotors.reverseIII)
-
-    // const [rightPosition, setRightPosition] = useState<number>(Math.floor(Math.random()*25))
-    // const [middlePosition, setMiddlePosition] = useState<number>(Math.floor(Math.random()*25))
-    // const [leftPosition, setLeftPosition] = useState<number>(Math.floor(Math.random()*25))
-    const [rightPosition, setRightPosition] = useState<number>(1)
-    const [middlePosition, setMiddlePosition] = useState<number>(10)
-    const [leftPosition, setLeftPosition] = useState<number>(9)
+    // current position of each rotor; 0 to 25
+    const [rightPosition, setRightPosition] = useState<number>(generateRandomRotorPosition())
+    const [middlePosition, setMiddlePosition] = useState<number>(generateRandomRotorPosition())
+    const [leftPosition, setLeftPosition] = useState<number>(generateRandomRotorPosition())
+    // const [rightPosition, setRightPosition] = useState<number>(1)
+    // const [middlePosition, setMiddlePosition] = useState<number>(10)
+    // const [leftPosition, setLeftPosition] = useState<number>(9)
 
     // const [inputLetter, setInputLetter] = useState('')
-    const [message, setMessage] = useState('')//input message from user
+
+    const [message, setMessage] = useState<string>('')//input message from user
     const [encryptedMessage, setEncryptedMessage] = useState<string>('')//encrypted message
     // const [isKeyPressed, setIsKeyPressed] = useState(false);
 
-    const changeRotor = (value: string, id: string) => {
+
+    const changeRotor = (value: string, id: string) => {//function for dropdown menu to select a rotor; I to V
         const newRotorKey = `rotor${value}` as keyof typeof Rotors
         const newReverseRotorKey = `reverse${value}` as keyof typeof Rotors
 
@@ -90,17 +100,46 @@ const Rotorboard: React.FC<Props> = () => {
         // }
     }
 
-    
-    const checkOverflow = (number:number)=>{
-        if(number > 25){
+
+    const checkOverflow = (number: number) => {//function to ensure indexed do not overflow up or down
+        if (number > 25) {
             return number - 26
         }
-        if(number < 0){
+        if (number < 0) {
             return number + 26
-        }else{
+        } else {
             return number
         }
     }
+
+    const seconds = (): void => {//runs on clicking the down button for the right rotor; increases right position by 1
+        console.log('seconds')
+        setRightPosition(checkOverflow(rightPosition + 1))
+    }
+    const antiSeconds = (): void => {//runs on clicking the up button for the right rotor; decreases right position by 1
+        console.log('antiseconds')
+        setRightPosition(checkOverflow(rightPosition - 1))
+    }
+
+    const minutes = (): void => {//runs on clicking the down button for the middle rotor; increases middle position by 1
+        console.log('minutes');
+        setMiddlePosition(checkOverflow(middlePosition + 1))
+    }
+    const antiMinutes = (): void => {//runs on clicking the up button for the middle rotor; decreases middle position by 1
+        console.log('antiminutes')
+        setMiddlePosition(checkOverflow(middlePosition - 1))
+    }
+    const hours = (): void => {//runs on clicking the down button for the left rotor; increases left position by 1
+        console.log("hours")
+        setLeftPosition(checkOverflow(leftPosition + 1))
+    }
+    const antiHours = (): void => {//runs on clicking the up button for the left rotor; decreases left position by 1
+        console.log('antihours')
+        setLeftPosition(checkOverflow(leftPosition - 1))
+    }
+
+
+
 
     const handleKeyDown = (event: any) => {
         const letter = event.key.toUpperCase()
@@ -113,32 +152,32 @@ const Rotorboard: React.FC<Props> = () => {
             const inputIndex = alphabet.indexOf(letter)//index of letter pressed
 
             const inputToRightOffset = rightPosition - 0// this is always zero since the input does not rotate: ;
-            const rightRotorOutput = currentRightRotor[checkOverflow(inputIndex+inputToRightOffset)]
+            const rightRotorOutput = currentRightRotor[checkOverflow(inputIndex + inputToRightOffset)]
             // console.log(alphabet[rightRotorOutput])
 
             const rightToMiddleOffset = middlePosition - rightPosition
-            const middleRotorOutput = currentMiddleRotor[checkOverflow(rightRotorOutput+rightToMiddleOffset)]
+            const middleRotorOutput = currentMiddleRotor[checkOverflow(rightRotorOutput + rightToMiddleOffset)]
             // console.log(alphabet[middleRotorOutput])
 
             const middleToLeftOffset = leftPosition - middlePosition
-            const leftRotorOutput = currentLeftRotor[checkOverflow(middleRotorOutput+middleToLeftOffset)]
+            const leftRotorOutput = currentLeftRotor[checkOverflow(middleRotorOutput + middleToLeftOffset)]
             // console.log(alphabet[leftRotorOutput])
 
             const leftToReflectorOffset = 0 - leftPosition
             const reflectorToLeftOffset = leftPosition - 0
-            const reflectorOutput = checkOverflow(reflector[checkOverflow(leftRotorOutput+leftToReflectorOffset)]+reflectorToLeftOffset)
+            const reflectorOutput = checkOverflow(reflector[checkOverflow(leftRotorOutput + leftToReflectorOffset)] + reflectorToLeftOffset)
             // console.log(alphabet[reflectorOutput])
 
             const leftToMiddleReverseOffset = middlePosition - leftPosition
-            const leftRotorReverseOutput = checkOverflow(currentReverseLeftRotor[reflectorOutput]+leftToMiddleReverseOffset)
+            const leftRotorReverseOutput = checkOverflow(currentReverseLeftRotor[reflectorOutput] + leftToMiddleReverseOffset)
             // console.log(alphabet[leftRotorReverseOutput])
 
             const middleToRightReverseOffset = rightPosition - middlePosition
-            const middleRotorReverseOutput = checkOverflow(currentReverseMiddleRotor[leftRotorReverseOutput]+middleToRightReverseOffset)
+            const middleRotorReverseOutput = checkOverflow(currentReverseMiddleRotor[leftRotorReverseOutput] + middleToRightReverseOffset)
             // console.log(alphabet[middleRotorReverseOutput])
 
             const rightToOutputReverseOffset = 0 - rightPosition
-            const rightRotorReverseOutput  = checkOverflow(currentReverseRightRotor[middleRotorReverseOutput]+rightToOutputReverseOffset)
+            const rightRotorReverseOutput = checkOverflow(currentReverseRightRotor[middleRotorReverseOutput] + rightToOutputReverseOffset)
             // console.log(alphabet[rightRotorReverseOutput])
 
             setEncryptedMessage(encryptedMessage + alphabet[rightRotorReverseOutput])
@@ -231,13 +270,21 @@ const Rotorboard: React.FC<Props> = () => {
                             <option>IV</option>
                             <option>V</option>
                         </Form.Select>
-                        <Button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-up-fill" viewBox="0 0 16 16">
-                            <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
-                        </svg></Button>
-                        <div>{leftPosition }</div>
-                        <Button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                        </svg></Button>
+                        <Button
+                            onClick={antiHours}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                            </svg>
+                        </Button>
+                        <div>{leftPosition}</div>
+                        <Button
+                            onClick={hours}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                            </svg>
+                        </Button>
                     </Card.Body>
                 </Card>
                 <Card className="mx-auto ">
@@ -252,13 +299,21 @@ const Rotorboard: React.FC<Props> = () => {
                             <option>IV</option>
                             <option>V</option>
                         </Form.Select>
-                        <Button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-up-fill" viewBox="0 0 16 16">
-                            <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
-                        </svg></Button>
-                        <div>{middlePosition }</div>
-                        <Button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                        </svg></Button>
+                        <Button
+                            onClick={antiMinutes}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                            </svg>
+                        </Button>
+                        <div>{middlePosition}</div>
+                        <Button
+                            onClick={minutes}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                            </svg>
+                        </Button>
                     </Card.Body>
                 </Card>
                 <Card className="mx-auto ">
@@ -273,13 +328,21 @@ const Rotorboard: React.FC<Props> = () => {
                             <option>IV</option>
                             <option>V</option>
                         </Form.Select>
-                        <Button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-up-fill" viewBox="0 0 16 16">
-                            <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
-                        </svg></Button>
-                        <div>{rightPosition }</div>
-                        <Button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                        </svg></Button>
+                        <Button
+                            onClick={antiSeconds}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                            </svg>
+                        </Button>
+                        <div>{rightPosition}</div>
+                        <Button
+                            onClick={seconds}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                            </svg>
+                        </Button>
                     </Card.Body>
                 </Card>
             </Stack>
