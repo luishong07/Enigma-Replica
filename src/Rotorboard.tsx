@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Card, Stack } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Rotors } from "./Rotors";
 
 
@@ -22,19 +22,34 @@ const Rotorboard: React.FC<Props> = () => {
     // const letters: RegExp = /^[a-zA-Z]$/
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     // console.log(Rotors)
+
+    
     const generateRandomRotorPosition = (): number => {
         let randomPosition: number = Math.floor(Math.random() * 25)
         return randomPosition
     }
     const selectRandomRotors = ()=>{
-        const allRotors = ["I","II","III","IV","V"]
-        // const selectedRotors = 
+        const allRotors:string[] = ["I","II","III","IV","V"]
+        const shuffled = [...allRotors].sort(()=> 0.5 - Math.random())
+        const subArray = shuffled.slice(0,3)
+        // console.log(shuffled)
+        const rightValue = `rotor${subArray[0]}` as keyof typeof Rotors
+        const middleValue = `rotor${subArray[1]}` as keyof typeof Rotors
+        const leftValue = `rotor${subArray[2]}` as keyof typeof Rotors
+
+        setCurrentRightRotor(Rotors[rightValue])
+        setCurrentMiddleRotor(Rotors[middleValue])
+        setCurrentLeftRotor(Rotors[leftValue])
     }
+
+    useEffect(() => {
+        selectRandomRotors()
+    }, [])
     const { reflector }: any = Rotors
     // current arrays of numbers for rotors 
-    const [currentRightRotor, setCurrentRightRotor] = useState<number[]>(Rotors['rotorI'])
-    const [currentMiddleRotor, setCurrentMiddleRotor] = useState<number[]>(Rotors.rotorII)
-    const [currentLeftRotor, setCurrentLeftRotor] = useState<number[]>(Rotors.rotorIII)
+    const [currentRightRotor, setCurrentRightRotor] = useState<number[]>([])
+    const [currentMiddleRotor, setCurrentMiddleRotor] = useState<number[]>([])
+    const [currentLeftRotor, setCurrentLeftRotor] = useState<number[]>([])
     // reverse versions of current rotors
     const [currentReverseRightRotor, setCurrentReverseRightRotor] = useState<number[]>(Rotors.reverseI)
     const [currentReverseMiddleRotor, setCurrentReverseMiddleRotor] = useState<number[]>(Rotors.reverseII)
