@@ -6,9 +6,11 @@ import Plugboard from "./Plugboard";
 import { Rotors } from "./Rotors";
 const App: React.FC = () => {
 
+	
 	const letters: RegExp = /^[a-zA-Z]$/
 	const [input, setInput] = useState<string>("")
 	const [isKeyUp, setIsKeyUp] = useState<boolean>(false)
+	const [pairs, setPairs] = useState<{}>({})
 	// const [rightPosition, setRightPosition] = useState<number>(0)
 	// const [middlePosition, setMiddlePosition] = useState<number>(0)
 	// const [leftPosition, setLeftPosition] = useState<number>(0)
@@ -69,7 +71,10 @@ const App: React.FC = () => {
 				encryptedLetter={input} 
 				isKeyUp={isKeyUp} 
 				/>
-			<Plugboard />
+			<Plugboard 
+				pairs={pairs}
+				setPairs={setPairs}
+			/>
 		</div>
 	);
 }
