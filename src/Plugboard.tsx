@@ -6,26 +6,39 @@ import { Stack } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 
 interface Props {
-    pairs:{},
+    pairs: {},
     setPairs: Function
 }
 
 
-const Plugboard: React.FC<Props> = ({pairs, setPairs}:Props) => {
+const Plugboard: React.FC<Props> = ({ pairs, setPairs }: Props) => {
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     // console.log(pairs)
     type letters = {
-        [key:string]: string
+        [key: string]: string
     }
-    const makePair = (letter:string, e:any)=>{
+    const tempObject: letters = {}
+    const usedLetters: string[] = []
+    const makePair = (letter: string, e: any) => {
+        const inputLetter = e.target.value.toUpperCase()//key pressed
+        if (!usedLetters.includes(inputLetter)) {
+            console.log('not included')
+            usedLetters.push(inputLetter)
+            tempObject[letter] = inputLetter
+            console.log(usedLetters)
+            
+        } else {
+            e.target.value = ""
+            console.log('else');
+            
+        }
+        
+        // setPairs({...pairs,...tempObject})
 
-        const tempObject:letters = {}
+        // tempObject[letter] = inputLetter
+        // console.log(tempObject)
+        // setPairs({...pairs,...tempObject})
 
-        const typedLetter = `${letter}` 
-        const inputLetter = e.target.value.toUpperCase()
-
-        tempObject[typedLetter] = inputLetter
-        console.log(tempObject)
         // console.log(letter, inputLetter)
         // e.target.value = letter
         // if(letter === inputLetter){
@@ -33,6 +46,7 @@ const Plugboard: React.FC<Props> = ({pairs, setPairs}:Props) => {
         //     e.target.value = ""
         //     return
         // }
+
     }
     return (
         <Container fluid className="plugboard-container py-2">
@@ -45,18 +59,18 @@ const Plugboard: React.FC<Props> = ({pairs, setPairs}:Props) => {
                 <Stack className="letter-pair-container my-auto" direction="horizontal" >
                     {alphabet.map(letter => {
                         return <div key={letter} className=" px-2 py-3 mx-1 single-pair">
-                                <div>{letter}</div>
-                                {/* <Button size="sm" variant="primary">
+                            <div>{letter}</div>
+                            {/* <Button size="sm" variant="primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-down-up" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
                                     </svg>
                                 </Button> */}
-                                <div className="arrows my-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-down-up" viewBox="0 0 16 16">
-                                        <path fillRule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
-                                    </svg>
-                                </div>
-                                <input onChange={(e)=>makePair(letter,e)}  className="plug" type="text" maxLength={1} />
+                            <div className="arrows my-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                                    <path fillRule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
+                                </svg>
+                            </div>
+                            <input onChange={(e) => makePair(letter, e)} className="plug" type="text" maxLength={1} />
                         </div>
                     })}
                 </Stack>
