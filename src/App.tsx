@@ -7,10 +7,13 @@ import { Rotors } from "./Rotors";
 const App: React.FC = () => {
 
 	
-	const letters: RegExp = /^[a-zA-Z]$/
+	// const letters: RegExp = /^[a-zA-Z]$/
+	type letters = {
+        [key: string]: string
+    }
 	const [input, setInput] = useState<string>("")
 	const [isKeyUp, setIsKeyUp] = useState<boolean>(false)
-	const [pairs, setPairs] = useState<{}>({})
+	const [pairs, setPairs] = useState<letters>({})
 	// const [rightPosition, setRightPosition] = useState<number>(0)
 	// const [middlePosition, setMiddlePosition] = useState<number>(0)
 	// const [leftPosition, setLeftPosition] = useState<number>(0)
@@ -63,6 +66,7 @@ const App: React.FC = () => {
 	return (
 		<div className="App">
 			<Rotorboard 
+				pairs={pairs}
 				// leftPosition={leftPosition} 
 				// middlePosition={middlePosition} 
 				// rightPosition={rightPosition} 

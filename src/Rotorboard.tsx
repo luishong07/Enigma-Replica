@@ -13,12 +13,13 @@ import { Rotors } from "./Rotors";
 
 // import Modal from 'react-bootstrap/Modal';
 interface Props {
+    pairs: {}
     // leftPosition: number,
     // middlePosition: number,
     // rightPosition: number
 }
 
-const Rotorboard: React.FC<Props> = () => {
+const Rotorboard: React.FC<Props> = ({pairs}:Props) => {
     // const letters: RegExp = /^[a-zA-Z]$/
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     // console.log(Rotors)
@@ -33,20 +34,39 @@ const Rotorboard: React.FC<Props> = () => {
         const shuffled = [...allRotors].sort(()=> 0.5 - Math.random())
         const subArray = shuffled.slice(0,3)
         // console.log(shuffled)
-        const rightValue = `rotor${subArray[0]}` as keyof typeof Rotors
-        const middleValue = `rotor${subArray[1]}` as keyof typeof Rotors
-        const leftValue = `rotor${subArray[2]}` as keyof typeof Rotors
+        // const rightValue = `rotor${subArray[0]}` as keyof typeof Rotors
+        // const middleValue = `rotor${subArray[1]}` as keyof typeof Rotors
+        // const leftValue = `rotor${subArray[2]}` as keyof typeof Rotors
 
-        setCurrentRightRotor(Rotors[rightValue])
-        setCurrentMiddleRotor(Rotors[middleValue])
-        setCurrentLeftRotor(Rotors[leftValue])
+        const rightValue = subArray[0]
+        const middleValue = subArray[1]
+        const leftValue = subArray[2]
+
+        setRightRotorValue(rightValue)
+        setMiddleRotorValue(middleValue)
+        setLeftRotorValue(leftValue)
+
+        setCurrentRightRotor(Rotors[`rotor${rightValue}` as keyof typeof Rotors ])
+        setCurrentMiddleRotor(Rotors[`rotor${middleValue}` as keyof typeof Rotors ])
+        setCurrentLeftRotor(Rotors[`rotor${leftValue}` as keyof typeof Rotors ])
+
+        setCurrentReverseRightRotor(Rotors[`reverse${rightValue}` as keyof typeof Rotors ])
+        setCurrentReverseMiddleRotor(Rotors[`reverse${middleValue}` as keyof typeof Rotors ])
+        setCurrentReverseLeftRotor(Rotors[`reverse${leftValue}` as keyof typeof Rotors ])
     }
+    
 
     useEffect(() => {
         selectRandomRotors()
     }, [])
     const { reflector }: any = Rotors
     // current arrays of numbers for rotors 
+
+    const [rightRotorValue, setRightRotorValue] = useState<string>('')
+    const [middleRotorValue, setMiddleRotorValue] = useState<string>('')
+    const [leftRotorValue, setLeftRotorValue] = useState<string>('')
+
+
     const [currentRightRotor, setCurrentRightRotor] = useState<number[]>([])
     const [currentMiddleRotor, setCurrentMiddleRotor] = useState<number[]>([])
     const [currentLeftRotor, setCurrentLeftRotor] = useState<number[]>([])
@@ -72,18 +92,26 @@ const Rotorboard: React.FC<Props> = () => {
     const changeRotor = (value: string, id: string) => {//function for dropdown menu to select a rotor; I to V
         const newRotorKey = `rotor${value}` as keyof typeof Rotors
         const newReverseRotorKey = `reverse${value}` as keyof typeof Rotors
+        
+
+        // setCurrentRightRotor(Rotors[`rotor${rightValue}` as keyof typeof Rotors ])
+        // setCurrentMiddleRotor(Rotors[`rotor${middleValue}` as keyof typeof Rotors ])
+        // setCurrentLeftRotor(Rotors[`rotor${leftValue}` as keyof typeof Rotors ])
 
         if (id === "leftRotorSelector") {
+            setLeftRotorValue(value)
             setCurrentLeftRotor(Rotors[newRotorKey])
             setCurrentReverseLeftRotor(Rotors[newReverseRotorKey])
         }
 
         if (id === "middleRotorSelector") {
+            setMiddleRotorValue(value)
             setCurrentMiddleRotor(Rotors[newRotorKey])
             setCurrentReverseMiddleRotor(Rotors[newReverseRotorKey])
         }
 
         if (id === "rightRotorSelector") {
+            setRightRotorValue(value)
             setCurrentRightRotor(Rotors[newRotorKey])
             setCurrentReverseRightRotor(Rotors[newReverseRotorKey])
         }
@@ -157,6 +185,7 @@ const Rotorboard: React.FC<Props> = () => {
 
 
     const handleKeyDown = (event: any) => {
+        console.log(pairs)
         const letter = event.key.toUpperCase()
         // console.log(letter)
         // if key is not held down and the key pressed is a letter 
@@ -251,6 +280,10 @@ const Rotorboard: React.FC<Props> = () => {
         // let randomIndex = Math.floor(Math.random() * alphabet.length)
         // setEncryptedMessage(encryptedMessage+alphabet[randomIndex])
     }
+    const clearMessages = ()=>{
+        setMessage('')
+        setEncryptedMessage('')
+    }
 
     return (
         <Container fluid className="rotor-container ">
@@ -260,7 +293,6 @@ const Rotorboard: React.FC<Props> = () => {
                     <div>Your Message</div>
                     <div>
                         <textarea
-
                             className="message"
                             value={message}
                             // onKeyDown={(e) => checkValidKey(e)}
@@ -270,13 +302,16 @@ const Rotorboard: React.FC<Props> = () => {
                         // onKeyUp={handleKeyUp}
                         />
                     </div>
+                    <Button
+                        onClick={clearMessages}
+                    >Clear</Button>
                 </Card.Body>
             </Card>
             <Stack className="rotor-settings my-2" direction="horizontal" gap={2}>
                 <Card className="mx-auto">
                     <Card.Body className="py-2">
                         <Form.Select
-                            defaultValue={'III'}
+                            value={leftRotorValue}
                             id="leftRotorSelector"
                             onChange={(e) => changeRotor(e.target.value, e.target.id)}>
                             <option>I</option>
@@ -305,7 +340,7 @@ const Rotorboard: React.FC<Props> = () => {
                 <Card className="mx-auto ">
                     <Card.Body className="py-2">
                         <Form.Select
-                            defaultValue={'II'}
+                            value={middleRotorValue}
                             id="middleRotorSelector"
                             onChange={(e) => changeRotor(e.target.value, e.target.id)}>
                             <option>I</option>
@@ -334,7 +369,7 @@ const Rotorboard: React.FC<Props> = () => {
                 <Card className="mx-auto ">
                     <Card.Body className="py-2">
                         <Form.Select
-                            defaultValue={'I'}
+                            value={rightRotorValue}
                             id="rightRotorSelector"
                             onChange={(e) => changeRotor(e.target.value, e.target.id)}>
                             <option>I</option>

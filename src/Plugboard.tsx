@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import "./Plugboard.css"
 // import { Card } from 'react-bootstrap'
 import Container from 'react-bootstrap/Container';
@@ -13,19 +13,23 @@ interface Props {
 
 const Plugboard: React.FC<Props> = ({ pairs, setPairs }: Props) => {
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-    // console.log(pairs)
+    const tempObject: letters = {}
+    const usedLetters: string[] = []
+    useEffect(()=>{
+        console.log('re-render');
+        randomPairing()
+    },[])
     type letters = {
         [key: string]: string
     }
-    const tempObject: letters = {}
-    const usedLetters: string[] = []
     const makePair = (letter: string, e: any) => {
         const inputLetter = e.target.value.toUpperCase()//key pressed
-        if (!usedLetters.includes(inputLetter)) {
+        if (!Object.values(pairs).includes(inputLetter)) {
             console.log('not included')
             usedLetters.push(inputLetter)
             tempObject[letter] = inputLetter
-            console.log(usedLetters)
+            
+            setPairs({...pairs,...tempObject})
             
         } else {
             e.target.value = ""
@@ -48,12 +52,37 @@ const Plugboard: React.FC<Props> = ({ pairs, setPairs }: Props) => {
         // }
 
     }
+    const randomPairing = ()=>{
+        console.log('random');
+        const randomPairs: letters = {}
+        const asortedAlphabet = [...alphabet].sort(() => 0.5 - Math.random())
+        for(let i = 0; i < alphabet.length ; i++){
+            randomPairs[alphabet[i] as keyof typeof randomPairs] = asortedAlphabet[i]
+        }   
+        setPairs(randomPairs)
+    }
+
+    const selfPairing =()=>{
+        const mirrorPairs:letters = {}
+        for(let i = 0; i < alphabet.length ; i++){
+            mirrorPairs[alphabet[i] as keyof typeof mirrorPairs] = alphabet[i]
+        }
+        setPairs(mirrorPairs)
+    }
     return (
         <Container fluid className="plugboard-container py-2">
             <Stack className="stack-container py-auto" direction="vertical">
                 <Stack className="options mx-auto my-auto" direction="horizontal" gap={2}>
-                    <Button variant="primary">Self Pairing</Button>
-                    <Button variant="primary">Random Pairing</Button>
+                    <Button 
+                        onClick={selfPairing}
+                        variant="primary">
+                        Self Pairing
+                    </Button>
+                    <Button
+                        onClick={randomPairing} 
+                        variant="primary">
+                            Random Pairing
+                    </Button>
                     <Button variant="primary">Clear Pairs</Button>
                 </Stack>
                 <Stack className="letter-pair-container my-auto" direction="horizontal" >
@@ -70,7 +99,7 @@ const Plugboard: React.FC<Props> = ({ pairs, setPairs }: Props) => {
                                     <path fillRule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
                                 </svg>
                             </div>
-                            <input onChange={(e) => makePair(letter, e)} className="plug" type="text" maxLength={1} />
+                            <input value={pairs[letter as keyof typeof pairs] ?? ""} onChange={(e) => makePair(letter, e)} className="plug" type="text" maxLength={1} />
                         </div>
                     })}
                 </Stack>
