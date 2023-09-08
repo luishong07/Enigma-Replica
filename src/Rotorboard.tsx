@@ -187,7 +187,8 @@ const Rotorboard: React.FC<Props> = ({pairs}:Props) => {
     const handleKeyDown = (event: any) => {
         console.log(pairs)
         const letter = event.key.toUpperCase()
-        // console.log(letter)
+        const test = pairs[event.key.toUpperCase() as keyof typeof pairs]
+        console.log(test)
         // if key is not held down and the key pressed is a letter 
         // almost everything should happen inside this is statement
         if (!event.repeat && alphabet.includes(letter)) {
