@@ -14,9 +14,16 @@ const App: React.FC = () => {
 	const [input, setInput] = useState<string>("")
 	const [isKeyUp, setIsKeyUp] = useState<boolean>(false)
 	const [pairs, setPairs] = useState<letters>({})
+	const [output, setOutput] = useState<string>('')
 	// const [rightPosition, setRightPosition] = useState<number>(0)
 	// const [middlePosition, setMiddlePosition] = useState<number>(0)
 	// const [leftPosition, setLeftPosition] = useState<number>(0)
+
+
+	useEffect(()=>{
+		// console.log(output);
+		
+	},[output])
 
 	// const handler = (e: KeyboardEvent) => {
 
@@ -67,11 +74,11 @@ const App: React.FC = () => {
 		<div className="App">
 			<Rotorboard 
 				pairs={pairs}
-				// leftPosition={leftPosition} 
-				// middlePosition={middlePosition} 
-				// rightPosition={rightPosition} 
+				setOutput ={setOutput}
+				// 
 			/>
 			<Lampboard 
+				output={output}
 				encryptedLetter={input} 
 				isKeyUp={isKeyUp} 
 				/>

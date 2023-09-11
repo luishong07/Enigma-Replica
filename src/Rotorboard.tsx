@@ -14,15 +14,14 @@ import { Rotors } from "./Rotors";
 // import Modal from 'react-bootstrap/Modal';
 interface Props {
     pairs: {}
+    setOutput: Function
     // leftPosition: number,
     // middlePosition: number,
     // rightPosition: number
 }
 
-const Rotorboard: React.FC<Props> = ({pairs}:Props) => {
-    // const letters: RegExp = /^[a-zA-Z]$/
+const Rotorboard: React.FC<Props> = ({pairs,setOutput}:Props) => {
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-    // console.log(Rotors)
 
     
     const generateRandomRotorPosition = (): number => {
@@ -156,39 +155,38 @@ const Rotorboard: React.FC<Props> = ({pairs}:Props) => {
     }
 
     const seconds = (): void => {//runs on clicking the down button for the right rotor; increases right position by 1
-        console.log('seconds')
+        // console.log('seconds')
         setRightPosition(checkOverflow(rightPosition + 1))
     }
     const antiSeconds = (): void => {//runs on clicking the up button for the right rotor; decreases right position by 1
-        console.log('antiseconds')
+        // console.log('antiseconds')
         setRightPosition(checkOverflow(rightPosition - 1))
     }
 
     const minutes = (): void => {//runs on clicking the down button for the middle rotor; increases middle position by 1
-        console.log('minutes');
+        // console.log('minutes');
         setMiddlePosition(checkOverflow(middlePosition + 1))
     }
     const antiMinutes = (): void => {//runs on clicking the up button for the middle rotor; decreases middle position by 1
-        console.log('antiminutes')
+        // console.log('antiminutes')
         setMiddlePosition(checkOverflow(middlePosition - 1))
     }
     const hours = (): void => {//runs on clicking the down button for the left rotor; increases left position by 1
-        console.log("hours")
+        // console.log("hours")
         setLeftPosition(checkOverflow(leftPosition + 1))
     }
     const antiHours = (): void => {//runs on clicking the up button for the left rotor; decreases left position by 1
-        console.log('antihours')
+        // console.log('antihours')
         setLeftPosition(checkOverflow(leftPosition - 1))
     }
 
-
-
-
     const handleKeyDown = (event: any) => {
-        console.log(pairs)
-        const letter = event.key.toUpperCase()
-        const test = pairs[event.key.toUpperCase() as keyof typeof pairs]
-        console.log(test)
+
+        let letter = event.key.toUpperCase()
+        if(!(Object.keys(pairs).length == 0)){//if there pairs object is not empty
+            letter = pairs[letter as keyof typeof pairs]
+        }
+        
         // if key is not held down and the key pressed is a letter 
         // almost everything should happen inside this is statement
         if (!event.repeat && alphabet.includes(letter)) {
@@ -223,11 +221,14 @@ const Rotorboard: React.FC<Props> = ({pairs}:Props) => {
 
             const rightToOutputReverseOffset = 0 - rightPosition
             const rightRotorReverseOutput = checkOverflow(currentReverseRightRotor[middleRotorReverseOutput] + rightToOutputReverseOffset)
+            setOutput(alphabet[rightRotorReverseOutput])
             // console.log(alphabet[rightRotorReverseOutput])
 
             setEncryptedMessage(encryptedMessage + alphabet[rightRotorReverseOutput])
             // console.log(leftPosition, middlePosition, rightPosition)
         }
+
+        
         // if (event.key === 'Enter') {
         //     console.log('Enter key pressed');
         // }
@@ -248,6 +249,10 @@ const Rotorboard: React.FC<Props> = ({pairs}:Props) => {
         //     // Start your continuous action or handle the key press event
         // }
     };
+    const handleKeyUp = ()=>{
+        // console.log('up');
+    
+    }
 
     // const handleKeyUp = (event:any) => {
     //     // if (event.key === 'Enter') {
@@ -300,7 +305,7 @@ const Rotorboard: React.FC<Props> = ({pairs}:Props) => {
                             placeholder="Enter your message here"
                             onChange={() => { }}
                             onKeyDown={(e) => { handleKeyDown(e) }}
-                        // onKeyUp={handleKeyUp}
+                            onKeyUp={handleKeyUp}
                         />
                     </div>
                     <Button

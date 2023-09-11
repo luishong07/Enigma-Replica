@@ -8,16 +8,17 @@ import { Stack } from 'react-bootstrap';
 
 interface Props {
     encryptedLetter: string,
-    isKeyUp: boolean
+    isKeyUp: boolean,
+    output: string
 }
 
-const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp }: Props) => {
+const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp,output }: Props) => {
     const firstRow: string[] = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"]
     const secondRow: string[] = ["A", "S", "D", "F", "G", "H", "J", "K", "L"]
     const thirdRow: string[] = ["Z", "X", "C", "V", "B", "N", "M"]
 
     useEffect(() => {
-        // console.log('onMount')
+        console.log(output)
 
     }, [])
 
