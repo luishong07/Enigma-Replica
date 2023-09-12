@@ -4,30 +4,34 @@ import "./Plugboard.css"
 import Container from 'react-bootstrap/Container';
 import { Stack } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-import { log } from "console";
 
 interface Props {
     pairs: {},
-    setPairs: Function
+    setPairs: Function,
+    input:string
 }
 
 
-const Plugboard: React.FC<Props> = ({ pairs, setPairs }: Props) => {
+const Plugboard: React.FC<Props> = ({input, pairs, setPairs }: Props) => {
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     const tempObject: letters = {}
     const usedLetters: string[] = []
     const [disabledPair, setDisabledPair] = useState<boolean>(false)
-    useEffect(() => {
-        // console.log('re-render');
-        // randomPairing()
-    }, [])
+    const [down, setDown] = useState<boolean>(false)
+
     type letters = {
         [key: string]: string
     }
+
+    useEffect(() => {
+        // console.log('re-render');
+        // console.log(input)
+    }, )
+
     const makePair = (letter: string, e: any) => {
         const inputLetter = e.target.value.toUpperCase()//key pressed
         if (!Object.values(pairs).includes(inputLetter)) {
-            console.log('not included')
+            // console.log('not included')
             usedLetters.push(inputLetter)
             tempObject[letter] = inputLetter
 
@@ -35,7 +39,7 @@ const Plugboard: React.FC<Props> = ({ pairs, setPairs }: Props) => {
 
         } else {
             e.target.value = ""
-            console.log('else');
+            // console.log('else');
 
         }
 
@@ -78,6 +82,24 @@ const Plugboard: React.FC<Props> = ({ pairs, setPairs }: Props) => {
         setPairs({})
         setDisabledPair(false)
     }
+
+
+    onkeydown = (e:any)=>{
+
+        if(!e.repeat){
+
+            // console.log(output , e , down)
+            setDown(true)
+            console.log(input)
+        }
+    }
+    onkeyup =()=>{
+        // console.log('up')
+        setDown(false)
+        // console.log(down)
+        
+    }
+
     return (
         <Container fluid className="plugboard-container py-2">
             <Stack className="stack-container py-auto" direction="vertical">
@@ -100,7 +122,7 @@ const Plugboard: React.FC<Props> = ({ pairs, setPairs }: Props) => {
                 </Stack>
                 <Stack className="letter-pair-container my-auto" direction="horizontal" >
                     {alphabet.map(letter => {
-                        return <div key={letter} className=" px-2 py-3 mx-1 single-pair">
+                        return <div key={letter} className={`px-2 py-3 mx-1 single-pair ${ (input == letter &&  down )? 'pressed':'unpressed' }`}>
                             <div>{letter}</div>
                             {/* <Button size="sm" variant="primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-down-up" viewBox="0 0 16 16">

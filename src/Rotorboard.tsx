@@ -14,13 +14,14 @@ import { Rotors } from "./Rotors";
 // import Modal from 'react-bootstrap/Modal';
 interface Props {
     pairs: {}
-    setOutput: Function
+    setOutput: Function,
+    setInput: Function
     // leftPosition: number,
     // middlePosition: number,
     // rightPosition: number
 }
 
-const Rotorboard: React.FC<Props> = ({pairs,setOutput}:Props) => {
+const Rotorboard: React.FC<Props> = ({setInput,pairs,setOutput}:Props) => {
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
     
@@ -183,6 +184,7 @@ const Rotorboard: React.FC<Props> = ({pairs,setOutput}:Props) => {
     const handleKeyDown = (event: any) => {
 
         let letter = event.key.toUpperCase()
+        setInput(letter)
         if(!(Object.keys(pairs).length == 0)){//if there pairs object is not empty
             letter = pairs[letter as keyof typeof pairs]
         }

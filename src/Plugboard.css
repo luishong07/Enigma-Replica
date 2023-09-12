@@ -38,8 +38,16 @@
     text-transform: uppercase;
 
 }
-.single-pair {
+.pressed{
+    background-color: red;
+}
+.unpressed{
     background-color: aliceblue;
+}
+
+.single-pair {
+    /* border: red 1px solid; */
+    /* background-color: aliceblue; */
     /* border: solid rebeccapurple 1px; */
     border-radius: 0.375rem;
 }

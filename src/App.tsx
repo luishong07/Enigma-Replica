@@ -75,6 +75,7 @@ const App: React.FC = () => {
 			<Rotorboard 
 				pairs={pairs}
 				setOutput ={setOutput}
+				setInput={setInput}
 				// 
 			/>
 			<Lampboard 
@@ -83,6 +84,7 @@ const App: React.FC = () => {
 				isKeyUp={isKeyUp} 
 				/>
 			<Plugboard 
+				input={input}
 				pairs={pairs}
 				setPairs={setPairs}
 			/>
