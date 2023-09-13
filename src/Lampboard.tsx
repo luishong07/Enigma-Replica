@@ -26,10 +26,7 @@ const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp,output }: Props) 
     },)
 
     onkeydown = (e:any)=>{
-
         if(!e.repeat){
-
-            // console.log(output , e , down)
             setDown(true)
             console.log(down)
         }
@@ -38,7 +35,6 @@ const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp,output }: Props) 
         console.log('up')
         setDown(false)
         console.log(down)
-        
     }
     
     const clearLight = ()=>{

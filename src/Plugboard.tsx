@@ -85,19 +85,13 @@ const Plugboard: React.FC<Props> = ({input, pairs, setPairs }: Props) => {
 
 
     onkeydown = (e:any)=>{
-
         if(!e.repeat){
-
-            // console.log(output , e , down)
             setDown(true)
             console.log(input)
         }
     }
     onkeyup =()=>{
-        // console.log('up')
-        setDown(false)
-        // console.log(down)
-        
+        setDown(false)        
     }
 
     return (
