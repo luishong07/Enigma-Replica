@@ -8,16 +8,18 @@ import Button from 'react-bootstrap/Button';
 interface Props {
     pairs: {},
     setPairs: Function,
-    input:string
+    input:string,
+    down: boolean
+
 }
 
 
-const Plugboard: React.FC<Props> = ({input, pairs, setPairs }: Props) => {
+const Plugboard: React.FC<Props> = ({down,input, pairs, setPairs }: Props) => {
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     const tempObject: letters = {}
     const usedLetters: string[] = []
     const [disabledPair, setDisabledPair] = useState<boolean>(false)
-    const [down, setDown] = useState<boolean>(false)
+    // const [down, setDown] = useState<boolean>(false)
 
     type letters = {
         [key: string]: string
@@ -84,15 +86,15 @@ const Plugboard: React.FC<Props> = ({input, pairs, setPairs }: Props) => {
     }
 
 
-    onkeydown = (e:any)=>{
-        if(!e.repeat){
-            setDown(true)
-            console.log(input)
-        }
-    }
-    onkeyup =()=>{
-        setDown(false)        
-    }
+    // onkeydown = (e:any)=>{
+    //     if(!e.repeat){
+    //         setDown(true)
+    //         console.log(input)
+    //     }
+    // }
+    // onkeyup =()=>{
+    //     setDown(false)        
+    // }
 
     return (
         <Container fluid className="plugboard-container py-2">

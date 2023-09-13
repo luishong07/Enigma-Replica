@@ -15,6 +15,7 @@ const App: React.FC = () => {
 	const [isKeyUp, setIsKeyUp] = useState<boolean>(false)
 	const [pairs, setPairs] = useState<letters>({})
 	const [output, setOutput] = useState<string>('')
+	const [down, setDown] = useState<boolean>(false)
 	// const [rightPosition, setRightPosition] = useState<number>(0)
 	// const [middlePosition, setMiddlePosition] = useState<number>(0)
 	// const [leftPosition, setLeftPosition] = useState<number>(0)
@@ -68,6 +69,14 @@ const App: React.FC = () => {
 	// 	// }
 	// }
 
+	onkeydown = (e:any)=>{
+        if(!e.repeat){
+            setDown(true)
+        }
+    }
+    onkeyup =()=>{
+        setDown(false)
+    }
 	
 
 	return (
@@ -76,17 +85,22 @@ const App: React.FC = () => {
 				pairs={pairs}
 				setOutput ={setOutput}
 				setInput={setInput}
+				setIsKeyUp={setIsKeyUp}
+
 				// 
 			/>
 			<Lampboard 
 				output={output}
 				encryptedLetter={input} 
 				isKeyUp={isKeyUp} 
+				down={down}
 				/>
 			<Plugboard 
 				input={input}
 				pairs={pairs}
 				setPairs={setPairs}
+				down={down}
+
 			/>
 		</div>
 	);

@@ -9,14 +9,15 @@ import { Stack } from 'react-bootstrap';
 interface Props {
     encryptedLetter: string,
     isKeyUp: boolean,
-    output: string
+    output: string,
+    down: boolean
 }
 
-const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp,output }: Props) => {
+const Lampboard: React.FC<Props> = ({ down,encryptedLetter, isKeyUp,output }: Props) => {
     const firstRow: string[] = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"]
     const secondRow: string[] = ["A", "S", "D", "F", "G", "H", "J", "K", "L"]
     const thirdRow: string[] = ["Z", "X", "C", "V", "B", "N", "M"]
-    const [down, setDown] = useState<boolean>(false)
+    // const [down, setDown] = useState<boolean>(false)
     // let down = false
     useEffect(() => {
         // console.log(output,down)
@@ -25,17 +26,17 @@ const Lampboard: React.FC<Props> = ({ encryptedLetter, isKeyUp,output }: Props) 
 
     },)
 
-    onkeydown = (e:any)=>{
-        if(!e.repeat){
-            setDown(true)
-            console.log(down)
-        }
-    }
-    onkeyup =()=>{
-        console.log('up')
-        setDown(false)
-        console.log(down)
-    }
+    // onkeydown = (e:any)=>{
+    //     if(!e.repeat){
+    //         setDown(true)
+    //         console.log(down)
+    //     }
+    // }
+    // onkeyup =()=>{
+    //     console.log('up')
+    //     setDown(false)
+    //     console.log(down)
+    // }
     
     const clearLight = ()=>{
     }

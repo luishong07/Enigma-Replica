@@ -15,13 +15,14 @@ import { Rotors } from "./Rotors";
 interface Props {
     pairs: {}
     setOutput: Function,
-    setInput: Function
+    setInput: Function,
+    setIsKeyUp: Function
     // leftPosition: number,
     // middlePosition: number,
     // rightPosition: number
 }
 
-const Rotorboard: React.FC<Props> = ({setInput,pairs,setOutput}:Props) => {
+const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props) => {
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
     
@@ -229,6 +230,7 @@ const Rotorboard: React.FC<Props> = ({setInput,pairs,setOutput}:Props) => {
             setEncryptedMessage(encryptedMessage + alphabet[rightRotorReverseOutput])
             // console.log(leftPosition, middlePosition, rightPosition)
         }
+        
 
         
         // if (event.key === 'Enter') {
