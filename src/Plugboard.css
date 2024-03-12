@@ -2,7 +2,9 @@
     display: grid;
     /* grid-template-columns: 1fr; */
     /* outline:  red solid 1px; */
-    background-color: #282c34;
+    /* background-color: #282c34; */
+    background-color: #3b0400;
+    background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
     /* height: 25vh; */
     /* display: flex; */
     /* flex-direction: row;
@@ -26,22 +28,23 @@
 .options {
     /* background-color: red; */
     /* justify-content: space-evenly; */
-
 }
 .stack-container {
-    background-color: rgb(91, 91, 91);
+    /* background-color: rgb(91, 91, 91); */
+    /* background-color: black; */
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
 
     border-radius: 0.375rem;
 }
 .plug {
     width: calc(10px + 2vmin);
     text-transform: uppercase;
-
 }
-.pressed{
+.pressed {
     background-color: red;
 }
-.unpressed{
+.unpressed {
     background-color: aliceblue;
 }
 
@@ -51,9 +54,9 @@
     /* border: solid rebeccapurple 1px; */
     border-radius: 0.375rem;
 }
-.arrows{
+.arrows {
     background-color: lightblue;
-    border-radius: .3em;
+    border-radius: 0.3em;
     /* color: white; */
     cursor: pointer;
 }

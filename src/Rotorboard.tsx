@@ -186,7 +186,7 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
 
         let letter = event.key.toUpperCase()
         setInput(letter)
-        if(!(Object.keys(pairs).length == 0)){//if there pairs object is not empty
+        if(!(Object.keys(pairs).length === 0)){//if there pairs object is not empty
             letter = pairs[letter as keyof typeof pairs]
         }
         
@@ -271,35 +271,39 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
     //     }
     // };
 
-    const checkValidKey = (event: any) => {
-        console.log(event)
-        // if(isKeyPressed){
+    // const checkValidKey = (event: any) => {
+    //     console.log(event)
+    //     // if(isKeyPressed){
 
-        // }
-        // if(e.key.match(letters)){
-        //     console.log("mathch!!");
-        // }else{
-        //     console.log("no match :(");
+    //     // }
+    //     // if(e.key.match(letters)){
+    //     //     console.log("mathch!!");
+    //     // }else{
+    //     //     console.log("no match :(");
 
-        // }
-        // console.log(e)
-        // const currentMessage = e.target.value.toUpperCase()
+    //     // }
+    //     // console.log(e)
+    //     // const currentMessage = e.target.value.toUpperCase()
 
-        // console.log(currentMessage[currentMessage.length-1])
-        // setMessage(currentMessage)
-        // let randomIndex = Math.floor(Math.random() * alphabet.length)
-        // setEncryptedMessage(encryptedMessage+alphabet[randomIndex])
-    }
+    //     // console.log(currentMessage[currentMessage.length-1])
+    //     // setMessage(currentMessage)
+    //     // let randomIndex = Math.floor(Math.random() * alphabet.length)
+    //     // setEncryptedMessage(encryptedMessage+alphabet[randomIndex])
+    // }
     const clearMessages = ()=>{
         setMessage('')
         setEncryptedMessage('')
     }
 
-    return (
-        <Container fluid className="rotor-container ">
+    const pasteAttempt = ()=>{
+        return false
+    }
 
-            <Card className="my-2">
-                <Card.Body>
+    return (
+        <Container fluid className="rotor-container">
+
+            <Card className="my-2 text">
+                <Card.Body >
                     <div>Your Message</div>
                     <div>
                         <textarea
@@ -407,14 +411,21 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
                 </Card>
             </Stack>
 
-            <Card className="  my-2">
+            <Card className="my-2">
                 <Card.Body>
                     <div>Your Encrypted Message</div>
                     <textarea
                         readOnly
                         className="encrypted-message"
                         value={encryptedMessage} placeholder="Your encrypted message"
+                        onPaste={pasteAttempt}
                     />
+                    <Button className="copy-btn"
+                        onClick={()=> {console.log("copy");
+                        }}
+                    >
+                        Copy
+                    </Button>
                 </Card.Body>
             </Card>
         </Container>

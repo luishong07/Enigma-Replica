@@ -1,12 +1,16 @@
 .base {
     /* border-radius: 10px; */
-    background: #282c34;
+    /* background: #282c34; */
+    /* background: black; */
+    background-color: #3b0400;
+    background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
     /* display: flex; */
     /* height: 50vh; */
     /* flex-direction: column; */
     font: arial;
     color: white;
     min-height: 45dvh;
+    outline: red 1px solid;
 }
 
 .row {
@@ -37,7 +41,6 @@
     /* height: calc(50vh / 3); */
 }
 
-
 .flex-item {
     display: flex;
     align-items: center;
@@ -59,28 +62,32 @@
 .lit {
     background: yellow;
 }
-.off{
-    background: white
+.off {
+    background: white;
 }
 .circle {
     width: 2em;
     height: 2em;
     border-radius: 50%;
-    border: solid 5px black;
+    border: solid 5px grey;
     /* background: white; */
     display: flex;
     align-items: center;
     justify-content: center;
     color: black;
-
 }
-.circle:hover{
+.circle:hover {
     cursor: default;
 }
 
-.lamp-rows-container{
-    background: grey;
+.lamp-rows-container {
+    /* background: grey; */
+    /* background-color: #3b0400;
+    background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png"); */
+    /* background: black; */
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
+
     border-radius: 2em;
     /* padding:  auto 0; */
-    
 }
