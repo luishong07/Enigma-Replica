@@ -304,7 +304,7 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
 
             <Card className="my-2" id="input-text">
                 <Card.Body >
-                    <div>Your Message</div>
+                    <div className="message-title">Your Message</div>
                     <div>
                         <textarea
                             className="message"
@@ -322,7 +322,7 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
                 </Card.Body>
             </Card>
             <Stack className="rotor-settings my-2" direction="horizontal" gap={2}>
-                <Card className="mx-auto">
+                <Card className="mx-auto " id="left-holder">
                     <Card.Body className="py-2">
                         <Form.Select
                             value={leftRotorValue}
@@ -351,7 +351,7 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
                         </Button>
                     </Card.Body>
                 </Card>
-                <Card className="mx-auto ">
+                <Card className="mx-auto " id="middle-holder">
                     <Card.Body className="py-2">
                         <Form.Select
                             value={middleRotorValue}
@@ -380,7 +380,7 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
                         </Button>
                     </Card.Body>
                 </Card>
-                <Card className="mx-auto ">
+                <Card className="mx-auto " id="right-holder">
                     <Card.Body className="py-2">
                         <Form.Select
                             value={rightRotorValue}
@@ -413,7 +413,7 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
 
             <Card className="my-2" id="output-text">
                 <Card.Body>
-                    <div>Your Encrypted Message</div>
+                    <div className="message-title"> Encrypted Message</div>
                     <textarea
                         readOnly
                         className="encrypted-message"

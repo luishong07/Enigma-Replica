@@ -1,3 +1,8 @@
+* {
+    font-family: "Special Elite";
+    font-weight: 400;
+    font-style: normal;
+}
 .rotor-container {
     /* display: flex; */
     /* flex-direction: column; */
@@ -70,8 +75,6 @@
     /* background-color: black; */
     background-color: #000000;
     background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
-
-    
 }
 
 .encrypted-message {
@@ -79,20 +82,39 @@
     resize: none;
     border-style: none;
     color: white;
-    background-color: black;
+    /* background-color: black; */
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
 }
 .copy-btn {
     background-image: url(decreaseButton.svg);
     background-repeat: no-repeat;
     background-position: right;
-    /* padding: 2rem; */
 }
 #input-text {
     background-color: black;
     background-color: #000000;
     background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
-
 }
 #output-text {
     background-color: black;
+    background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
+}
+.message-title {
+    color: white;
+}
+
+#left-holder,
+#middle-holder,
+#right-holder {
+    background-color: black;
+    background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
+    color: white;
+}
+#rightRotorSelector,
+#middleRotorSelector,
+#leftRotorSelector {
+    background-color: black;
+    /* background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png"); */
+    color: white;
 }
