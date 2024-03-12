@@ -1,4 +1,4 @@
-.rotor-container{
+.rotor-container {
     /* display: flex; */
     /* flex-direction: column; */
     /* align-items: center; */
@@ -16,7 +16,7 @@
     min-height: 25dvh;
 }
 
-.positions{
+.positions {
     /* width: 50vw;
     background-color: red */
     /* display: flex;
@@ -26,62 +26,73 @@
     width: 40vw;
     outline: red solid 1px; */
 }
-.position-row{
+.position-row {
     /* justify-content: space-evenly;
     list-style: none;
     display: flex;
     align-items: center;
     height: calc(25vh / 3); */
 }
-.position{
-
+.position {
     /* display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: center; */
 }
-.rotor-selector{
+.rotor-selector {
     /* width: 1rem; */
-    
-    
 }
-.position-button{
+.position-button {
     /* width: 5rem; */
 }
-.up{
-    background-image:  url(increaseButton.svg);
+.up {
+    background-image: url(increaseButton.svg);
     background-repeat: no-repeat;
     background-position: center;
-    padding: 1rem;
+    /* padding: 1rem; */
 }
-.down{
-    background-image:  url(decreaseButton.svg);
+.down {
+    background-image: url(decreaseButton.svg);
     background-repeat: no-repeat;
     background-position: center;
-    padding: 1rem;
+    /* padding: 1rem; */
 }
-.rotor-settings{
+.rotor-settings {
     /* background-color: #525254; */
     /* border-radius: 0.375rem; */
     /* border: solid rgba(0, 0, 0, 0.5) 1px; */
 }
-.message{
+.message {
     width: 20ch;
     resize: none;
     border-style: none;
+    color: white;
+    /* background-color: black; */
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
+
+    
 }
 
-.encrypted-message{
+.encrypted-message {
     width: 20ch;
     resize: none;
     border-style: none;
+    color: white;
+    background-color: black;
 }
-.copy-btn{
+.copy-btn {
     background-image: url(decreaseButton.svg);
     background-repeat: no-repeat;
     background-position: right;
     /* padding: 2rem; */
 }
-.text{
+#input-text {
+    background-color: black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
+
+}
+#output-text {
     background-color: black;
 }

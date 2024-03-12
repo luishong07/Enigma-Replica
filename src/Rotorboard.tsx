@@ -302,7 +302,7 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
     return (
         <Container fluid className="rotor-container">
 
-            <Card className="my-2 text">
+            <Card className="my-2" id="input-text">
                 <Card.Body >
                     <div>Your Message</div>
                     <div>
@@ -411,7 +411,7 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
                 </Card>
             </Stack>
 
-            <Card className="my-2">
+            <Card className="my-2" id="output-text">
                 <Card.Body>
                     <div>Your Encrypted Message</div>
                     <textarea

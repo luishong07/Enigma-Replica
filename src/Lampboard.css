@@ -9,9 +9,18 @@
     /* flex-direction: column; */
     font: arial;
     color: white;
-    min-height: 45dvh;
+    min-height: 42dvh;
     outline: red 1px solid;
 }
+@media (width >= 1500px) {
+    /* … */
+    .base{
+        min-height: 45dvh;
+
+    }
+    
+  }
+  
 
 .row {
     /* padding: auto;
