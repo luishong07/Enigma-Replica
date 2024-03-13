@@ -198,7 +198,7 @@ const Rotorboard: React.FC<Props> = ({ setIsKeyUp, setInput, pairs, setOutput }:
             clockRotation()
             // setMessage(message + letter)
             // console.log(letter);
-            
+
             const inputIndex = alphabet.indexOf(letter)//index of letter pressed
 
             const inputToRightOffset = rightPosition - 0// this is always zero since the input does not rotate: ;
@@ -304,14 +304,14 @@ const Rotorboard: React.FC<Props> = ({ setIsKeyUp, setInput, pairs, setOutput }:
         return false
     }
 
-    const copyToClipboard = async (text:any) => {
+    const copyToClipboard = async (text: any) => {
         try {
             await navigator.clipboard.writeText(text);
         } catch (error) {
             alert('Error copying to clipboard:');
         }
     };
-    
+
     return (
         <Container fluid className="rotor-container">
 
@@ -329,16 +329,30 @@ const Rotorboard: React.FC<Props> = ({ setIsKeyUp, setInput, pairs, setOutput }:
                             onKeyUp={handleKeyUp}
                         />
                     </div>
-                    <Button
-                        className="btn btn-secondary"
-                        onClick={clearMessages}
-                        id="clear-btn"
-                    >
-                        Clear
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eraser" viewBox="0 0 16 16">
-                            <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293z" />
-                        </svg>
-                    </Button>
+                    <div className="btn-container">
+                        <Button
+                            className="btn btn-secondary"
+                            onClick={clearMessages}
+                            id="clear-btn"
+                        >
+                            Clear
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eraser" viewBox="0 0 16 16">
+                                <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293z" />
+                            </svg>
+                        </Button>
+                        <Button
+                            className="btn btn-secondary"
+                            id="copy-message-btn"
+                            onClick={() => copyToClipboard(message)}
+                        >
+                            <div>
+                                Copy
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-copy" viewBox="0 0 16 16">
+                                <path fillRule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z" />
+                            </svg>
+                        </Button>
+                    </div>
                 </Card.Body>
             </Card>
             <Stack className="rotor-settings my-2" direction="horizontal" gap={2}>
@@ -362,7 +376,7 @@ const Rotorboard: React.FC<Props> = ({ setIsKeyUp, setInput, pairs, setOutput }:
                                 <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
                             </svg>
                         </Button>
-                        <div>{leftPosition}</div>
+                        <div>{leftPosition + 1}</div>
                         <Button
                             className="btn btn-secondary"
                             onClick={hours}
@@ -393,7 +407,7 @@ const Rotorboard: React.FC<Props> = ({ setIsKeyUp, setInput, pairs, setOutput }:
                                 <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
                             </svg>
                         </Button>
-                        <div>{middlePosition}</div>
+                        <div>{middlePosition + 1}</div>
                         <Button
                             className="btn btn-secondary"
                             onClick={minutes}
@@ -424,7 +438,7 @@ const Rotorboard: React.FC<Props> = ({ setIsKeyUp, setInput, pairs, setOutput }:
                                 <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
                             </svg>
                         </Button>
-                        <div>{rightPosition}</div>
+                        <div>{rightPosition + 1}</div>
                         <Button
                             className="btn btn-secondary"
                             onClick={seconds}
@@ -449,14 +463,14 @@ const Rotorboard: React.FC<Props> = ({ setIsKeyUp, setInput, pairs, setOutput }:
                     <Button
                         className="btn btn-secondary"
                         id="copy-btn"
-                        onClick={()=>copyToClipboard(encryptedMessage)}
+                        onClick={() => copyToClipboard(encryptedMessage)}
                     >
                         <div>
                             Copy
 
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-copy" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z" />
+                            <path fillRule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z" />
                         </svg>
                     </Button>
                 </Card.Body>

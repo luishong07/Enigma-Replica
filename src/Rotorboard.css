@@ -93,6 +93,15 @@
     margin: auto;
     
 }
+#copy-message-btn{
+    background-repeat: no-repeat;
+    display: flex;
+    gap: 0.5rem;
+    margin: auto;
+}
+.btn-container{
+    display: flex;
+}
 #clear-btn{
     background-repeat: no-repeat;
     display: flex;
@@ -101,10 +110,12 @@
     
 }
 #input-text {
+    border-radius: 2rem;
     background-color: black;
     background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
 }
 #output-text {
+    border-radius: 2rem;
     background-color: black;
     background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
 }

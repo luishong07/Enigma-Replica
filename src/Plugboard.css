@@ -17,7 +17,7 @@
 }
 
 .plugboard-top {
-    outline: red solid 1px;
+    /* outline: red solid 1px; */
 }
 
 .letter-pair-container {
@@ -35,7 +35,7 @@
     background-color: #000000;
     background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
 
-    border-radius: 0.375rem;
+    border-radius: 2rem 2rem 0.375rem 0.375rem;
 }
 .plug {
     width: calc(10px + 2vmin);
@@ -59,4 +59,8 @@
     border-radius: 0.3em;
     /* color: white; */
     cursor: pointer;
+}
+#pairing-btn,#self-btn,#clear-pair-btn,#copy-all-btn{
+    display: flex; 
+    gap: 0.5rem;
 }
