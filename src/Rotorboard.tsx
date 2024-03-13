@@ -22,18 +22,18 @@ interface Props {
     // rightPosition: number
 }
 
-const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props) => {
+const Rotorboard: React.FC<Props> = ({ setIsKeyUp, setInput, pairs, setOutput }: Props) => {
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
-    
+
     const generateRandomRotorPosition = (): number => {
         let randomPosition: number = Math.floor(Math.random() * 25)
         return randomPosition
     }
-    const selectRandomRotors = ()=>{
-        const allRotors:string[] = ["I","II","III","IV","V"]
-        const shuffled = [...allRotors].sort(()=> 0.5 - Math.random())
-        const subArray = shuffled.slice(0,3)
+    const selectRandomRotors = () => {
+        const allRotors: string[] = ["I", "II", "III", "IV", "V"]
+        const shuffled = [...allRotors].sort(() => 0.5 - Math.random())
+        const subArray = shuffled.slice(0, 3)
         // console.log(shuffled)
         // const rightValue = `rotor${subArray[0]}` as keyof typeof Rotors
         // const middleValue = `rotor${subArray[1]}` as keyof typeof Rotors
@@ -47,15 +47,15 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
         setMiddleRotorValue(middleValue)
         setLeftRotorValue(leftValue)
 
-        setCurrentRightRotor(Rotors[`rotor${rightValue}` as keyof typeof Rotors ])
-        setCurrentMiddleRotor(Rotors[`rotor${middleValue}` as keyof typeof Rotors ])
-        setCurrentLeftRotor(Rotors[`rotor${leftValue}` as keyof typeof Rotors ])
+        setCurrentRightRotor(Rotors[`rotor${rightValue}` as keyof typeof Rotors])
+        setCurrentMiddleRotor(Rotors[`rotor${middleValue}` as keyof typeof Rotors])
+        setCurrentLeftRotor(Rotors[`rotor${leftValue}` as keyof typeof Rotors])
 
-        setCurrentReverseRightRotor(Rotors[`reverse${rightValue}` as keyof typeof Rotors ])
-        setCurrentReverseMiddleRotor(Rotors[`reverse${middleValue}` as keyof typeof Rotors ])
-        setCurrentReverseLeftRotor(Rotors[`reverse${leftValue}` as keyof typeof Rotors ])
+        setCurrentReverseRightRotor(Rotors[`reverse${rightValue}` as keyof typeof Rotors])
+        setCurrentReverseMiddleRotor(Rotors[`reverse${middleValue}` as keyof typeof Rotors])
+        setCurrentReverseLeftRotor(Rotors[`reverse${leftValue}` as keyof typeof Rotors])
     }
-    
+
 
     useEffect(() => {
         selectRandomRotors()
@@ -93,7 +93,7 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
     const changeRotor = (value: string, id: string) => {//function for dropdown menu to select a rotor; I to V
         const newRotorKey = `rotor${value}` as keyof typeof Rotors
         const newReverseRotorKey = `reverse${value}` as keyof typeof Rotors
-        
+
 
         // setCurrentRightRotor(Rotors[`rotor${rightValue}` as keyof typeof Rotors ])
         // setCurrentMiddleRotor(Rotors[`rotor${middleValue}` as keyof typeof Rotors ])
@@ -185,16 +185,20 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
     const handleKeyDown = (event: any) => {
 
         let letter = event.key.toUpperCase()
+        // console.log(letter);
+        let inputLetter = letter
         setInput(letter)
-        if(!(Object.keys(pairs).length === 0)){//if there pairs object is not empty
+        if (!(Object.keys(pairs).length === 0)) {//if there pairs object is not empty
             letter = pairs[letter as keyof typeof pairs]
         }
-        
+
         // if key is not held down and the key pressed is a letter 
         // almost everything should happen inside this is statement
         if (!event.repeat && alphabet.includes(letter)) {
             clockRotation()
-            setMessage(message + letter)
+            // setMessage(message + letter)
+            // console.log(letter);
+            
             const inputIndex = alphabet.indexOf(letter)//index of letter pressed
 
             const inputToRightOffset = rightPosition - 0// this is always zero since the input does not rotate: ;
@@ -226,13 +230,14 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
             const rightRotorReverseOutput = checkOverflow(currentReverseRightRotor[middleRotorReverseOutput] + rightToOutputReverseOffset)
             setOutput(alphabet[rightRotorReverseOutput])
             // console.log(alphabet[rightRotorReverseOutput])
+            setMessage(message + inputLetter)
 
             setEncryptedMessage(encryptedMessage + alphabet[rightRotorReverseOutput])
             // console.log(leftPosition, middlePosition, rightPosition)
         }
-        
 
-        
+
+
         // if (event.key === 'Enter') {
         //     console.log('Enter key pressed');
         // }
@@ -253,9 +258,9 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
         //     // Start your continuous action or handle the key press event
         // }
     };
-    const handleKeyUp = ()=>{
+    const handleKeyUp = () => {
         // console.log('up');
-    
+
     }
 
     // const handleKeyUp = (event:any) => {
@@ -290,15 +295,23 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
     //     // let randomIndex = Math.floor(Math.random() * alphabet.length)
     //     // setEncryptedMessage(encryptedMessage+alphabet[randomIndex])
     // }
-    const clearMessages = ()=>{
+    const clearMessages = () => {
         setMessage('')
         setEncryptedMessage('')
     }
 
-    const pasteAttempt = ()=>{
+    const pasteAttempt = () => {
         return false
     }
 
+    const copyToClipboard = async (text:any) => {
+        try {
+            await navigator.clipboard.writeText(text);
+        } catch (error) {
+            alert('Error copying to clipboard:');
+        }
+    };
+    
     return (
         <Container fluid className="rotor-container">
 
@@ -317,8 +330,15 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
                         />
                     </div>
                     <Button
+                        className="btn btn-secondary"
                         onClick={clearMessages}
-                    >Clear</Button>
+                        id="clear-btn"
+                    >
+                        Clear
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eraser" viewBox="0 0 16 16">
+                            <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293z" />
+                        </svg>
+                    </Button>
                 </Card.Body>
             </Card>
             <Stack className="rotor-settings my-2" direction="horizontal" gap={2}>
@@ -335,6 +355,7 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
                             <option>V</option>
                         </Form.Select>
                         <Button
+                            className="btn btn-secondary"
                             onClick={antiHours}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-up-fill" viewBox="0 0 16 16">
@@ -343,6 +364,7 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
                         </Button>
                         <div>{leftPosition}</div>
                         <Button
+                            className="btn btn-secondary"
                             onClick={hours}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-down-fill" viewBox="0 0 16 16">
@@ -364,6 +386,7 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
                             <option>V</option>
                         </Form.Select>
                         <Button
+                            className="btn btn-secondary"
                             onClick={antiMinutes}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-up-fill" viewBox="0 0 16 16">
@@ -372,6 +395,7 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
                         </Button>
                         <div>{middlePosition}</div>
                         <Button
+                            className="btn btn-secondary"
                             onClick={minutes}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-down-fill" viewBox="0 0 16 16">
@@ -393,6 +417,7 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
                             <option>V</option>
                         </Form.Select>
                         <Button
+                            className="btn btn-secondary"
                             onClick={antiSeconds}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-up-fill" viewBox="0 0 16 16">
@@ -401,6 +426,7 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
                         </Button>
                         <div>{rightPosition}</div>
                         <Button
+                            className="btn btn-secondary"
                             onClick={seconds}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-down-fill" viewBox="0 0 16 16">
@@ -420,16 +446,22 @@ const Rotorboard: React.FC<Props> = ({setIsKeyUp,setInput,pairs,setOutput}:Props
                         value={encryptedMessage} placeholder="Your encrypted message"
                         onPaste={pasteAttempt}
                     />
-                    <Button className="copy-btn"
-                        onClick={()=> {console.log("copy");
-                        }}
+                    <Button
+                        className="btn btn-secondary"
+                        id="copy-btn"
+                        onClick={()=>copyToClipboard(encryptedMessage)}
                     >
-                        Copy
+                        <div>
+                            Copy
+
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-copy" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z" />
+                        </svg>
                     </Button>
                 </Card.Body>
             </Card>
         </Container>
     )
 }
-
 export default Rotorboard

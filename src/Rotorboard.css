@@ -86,14 +86,22 @@
     background-color: #000000;
     background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
 }
-.copy-btn {
-    background-image: url(decreaseButton.svg);
+#copy-btn {
     background-repeat: no-repeat;
-    background-position: right;
+    display: flex;
+    gap: 0.5rem;
+    margin: auto;
+    
+}
+#clear-btn{
+    background-repeat: no-repeat;
+    display: flex;
+    gap: 0.5rem;
+    margin: auto;
+    
 }
 #input-text {
     background-color: black;
-    background-color: #000000;
     background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
 }
 #output-text {
@@ -102,6 +110,7 @@
 }
 .message-title {
     color: white;
+    text-decoration: underline
 }
 
 #left-holder,
