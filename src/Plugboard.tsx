@@ -9,12 +9,14 @@ interface Props {
     pairs: {},
     setPairs: Function,
     input: string,
-    down: boolean
+    down: boolean,
+    getAllInfo: any,
+    setPairsString: Function
 
 }
 
 
-const Plugboard: React.FC<Props> = ({ down, input, pairs, setPairs }: Props) => {
+const Plugboard: React.FC<Props> = ({setPairsString, down, input, pairs, setPairs,getAllInfo }: Props) => {
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     const tempObject: letters = {}
     const usedLetters: string[] = []
@@ -60,13 +62,20 @@ const Plugboard: React.FC<Props> = ({ down, input, pairs, setPairs }: Props) => 
         // }
 
     }
+
     const randomPairing = () => {
         const randomPairs: letters = {}
         let newAlphabet = [...alphabet].sort(() => 0.5 - Math.random())
+        let aggregateString = ''
         for (let i = 0; i < newAlphabet.length; i += 2) {
             randomPairs[newAlphabet[i]] = newAlphabet[i + 1]
             randomPairs[newAlphabet[i + 1]] = newAlphabet[i]
+            // console.log(newAlphabet[i + 1], newAlphabet[i]);
+            aggregateString += `${newAlphabet[i + 1]}${newAlphabet[i]} `
+
+            
         }
+        setPairsString(aggregateString)
         setPairs(randomPairs)
         setDisabledPair(true)
     }
@@ -120,7 +129,7 @@ const Plugboard: React.FC<Props> = ({ down, input, pairs, setPairs }: Props) => 
                         variant="primary">
                         Random Pairing
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-shuffle" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.6 9.6 0 0 0 7.556 8a9.6 9.6 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.6 10.6 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.6 9.6 0 0 0 6.444 8a9.6 9.6 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5" />
+                            <path fillRule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.6 9.6 0 0 0 7.556 8a9.6 9.6 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.6 10.6 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.6 9.6 0 0 0 6.444 8a9.6 9.6 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5" />
                             <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192m0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192" />
                         </svg>
                     </Button>
@@ -136,7 +145,7 @@ const Plugboard: React.FC<Props> = ({ down, input, pairs, setPairs }: Props) => 
                     </Button>
                     <Button
                         className="btn btn-secondary"
-                        // onClick={clearPairs}
+                        onClick={getAllInfo}
                         id="copy-all-btn"
                         variant="primary">
                         Copy All Info

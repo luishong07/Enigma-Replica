@@ -91,6 +91,8 @@
     display: flex;
     gap: 0.5rem;
     margin: auto;
+    align-items: center;
+
     
 }
 #copy-message-btn{
@@ -98,6 +100,8 @@
     display: flex;
     gap: 0.5rem;
     margin: auto;
+    align-items: center;
+
 }
 .btn-container{
     display: flex;
@@ -107,6 +111,8 @@
     display: flex;
     gap: 0.5rem;
     margin: auto;
+    align-items: center;
+
     
 }
 #input-text {

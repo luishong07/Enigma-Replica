@@ -3,28 +3,31 @@ import "./App.css";
 import Lampboard from "./Lampboard";
 import Rotorboard from "./Rotorboard";
 import Plugboard from "./Plugboard";
-import { Rotors } from "./Rotors";
 const App: React.FC = () => {
 
-	
+
 	// const letters: RegExp = /^[a-zA-Z]$/
 	type letters = {
-        [key: string]: string
-    }
+		[key: string]: string
+	}
 	const [input, setInput] = useState<string>("")
 	const [isKeyUp, setIsKeyUp] = useState<boolean>(false)
 	const [pairs, setPairs] = useState<letters>({})
 	const [output, setOutput] = useState<string>('')
 	const [down, setDown] = useState<boolean>(false)
+
+	const [rotorsIds, setRotorsIds] = useState<string>('')
+	const [initialPositions, setInitialPositions] = useState<string>('')
+	const [pairsString, setPairsString] = useState<string>('')
 	// const [rightPosition, setRightPosition] = useState<number>(0)
 	// const [middlePosition, setMiddlePosition] = useState<number>(0)
 	// const [leftPosition, setLeftPosition] = useState<number>(0)
 
 
-	useEffect(()=>{
+	useEffect(() => {
 		// console.log(output);
-		
-	},[output])
+
+	}, [output])
 
 	// const handler = (e: KeyboardEvent) => {
 
@@ -69,33 +72,49 @@ const App: React.FC = () => {
 	// 	// }
 	// }
 
-	onkeydown = (e:any)=>{
-        if(!e.repeat){
-            setDown(true)
+	onkeydown = (e: any) => {
+		if (!e.repeat) {
+			setDown(true)
+		}
+	}
+	onkeyup = () => {
+		setDown(false)
+	}
+
+	const getAllInfo = async () => {
+		// console.log(rotorsIds, initialPositions);
+		// console.log( `${rotorsIds} | ${initialPositions} ` );
+		try {
+            await navigator.clipboard.writeText(`${rotorsIds} | ${initialPositions} ` );
+        } catch (error) {
+            alert('Error copying to clipboard:');
         }
-    }
-    onkeyup =()=>{
-        setDown(false)
-    }
-	
+
+
+	}
+
+
+
 
 	return (
 		<div className="App">
-			<Rotorboard 
+			<Rotorboard
+				setInitialPositions={setInitialPositions}
+				setRotorsIds={setRotorsIds}
 				pairs={pairs}
-				setOutput ={setOutput}
+				setOutput={setOutput}
 				setInput={setInput}
 				setIsKeyUp={setIsKeyUp}
-
-				// 
 			/>
-			<Lampboard 
+			<Lampboard
 				output={output}
-				encryptedLetter={input} 
-				isKeyUp={isKeyUp} 
+				encryptedLetter={input}
+				isKeyUp={isKeyUp}
 				down={down}
-				/>
-			<Plugboard 
+			/>
+			<Plugboard
+				setPairsString={setPairsString}
+				getAllInfo={getAllInfo}
 				input={input}
 				pairs={pairs}
 				setPairs={setPairs}
@@ -108,3 +127,4 @@ const App: React.FC = () => {
 
 export default App;
 
+// 

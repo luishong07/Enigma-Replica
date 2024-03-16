@@ -16,13 +16,15 @@ interface Props {
     pairs: {}
     setOutput: Function,
     setInput: Function,
-    setIsKeyUp: Function
+    setIsKeyUp: Function,
+    setRotorsIds: Function,
+    setInitialPositions: Function
     // leftPosition: number,
     // middlePosition: number,
     // rightPosition: number
 }
 
-const Rotorboard: React.FC<Props> = ({ setIsKeyUp, setInput, pairs, setOutput }: Props) => {
+const Rotorboard: React.FC<Props> = ({setInitialPositions, setIsKeyUp, setInput, pairs, setOutput,setRotorsIds }: Props) => {
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
 
@@ -42,6 +44,8 @@ const Rotorboard: React.FC<Props> = ({ setIsKeyUp, setInput, pairs, setOutput }:
         const rightValue = subArray[0]
         const middleValue = subArray[1]
         const leftValue = subArray[2]
+        setRotorsIds(`${leftValue} ${middleValue} ${rightValue}`)
+        setInitialPositions(`${leftPosition +1} ${middlePosition+1} ${rightPosition+1}`)
 
         setRightRotorValue(rightValue)
         setMiddleRotorValue(middleValue)
@@ -55,6 +59,9 @@ const Rotorboard: React.FC<Props> = ({ setIsKeyUp, setInput, pairs, setOutput }:
         setCurrentReverseMiddleRotor(Rotors[`reverse${middleValue}` as keyof typeof Rotors])
         setCurrentReverseLeftRotor(Rotors[`reverse${leftValue}` as keyof typeof Rotors])
     }
+    const [rightPosition, setRightPosition] = useState<number>(generateRandomRotorPosition())
+    const [middlePosition, setMiddlePosition] = useState<number>(generateRandomRotorPosition())
+    const [leftPosition, setLeftPosition] = useState<number>(generateRandomRotorPosition())
 
 
     useEffect(() => {
@@ -76,9 +83,11 @@ const Rotorboard: React.FC<Props> = ({ setIsKeyUp, setInput, pairs, setOutput }:
     const [currentReverseMiddleRotor, setCurrentReverseMiddleRotor] = useState<number[]>(Rotors.reverseII)
     const [currentReverseLeftRotor, setCurrentReverseLeftRotor] = useState<number[]>(Rotors.reverseIII)
     // current position of each rotor; 0 to 25
-    const [rightPosition, setRightPosition] = useState<number>(generateRandomRotorPosition())
-    const [middlePosition, setMiddlePosition] = useState<number>(generateRandomRotorPosition())
-    const [leftPosition, setLeftPosition] = useState<number>(generateRandomRotorPosition())
+    // const [rightPosition, setRightPosition] = useState<number>(generateRandomRotorPosition())
+    // const [middlePosition, setMiddlePosition] = useState<number>(generateRandomRotorPosition())
+    // const [leftPosition, setLeftPosition] = useState<number>(generateRandomRotorPosition())
+    // setInitialPositions(`${leftPosition}, ${middlePosition}, ${rightPosition}`)
+
     // const [rightPosition, setRightPosition] = useState<number>(1)
     // const [middlePosition, setMiddlePosition] = useState<number>(10)
     // const [leftPosition, setLeftPosition] = useState<number>(9)
@@ -467,7 +476,6 @@ const Rotorboard: React.FC<Props> = ({ setIsKeyUp, setInput, pairs, setOutput }:
                     >
                         <div>
                             Copy
-
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-copy" viewBox="0 0 16 16">
                             <path fillRule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z" />
