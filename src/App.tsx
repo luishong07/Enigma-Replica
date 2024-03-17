@@ -19,6 +19,7 @@ const App: React.FC = () => {
 	const [rotorsIds, setRotorsIds] = useState<string>('')
 	const [initialPositions, setInitialPositions] = useState<string>('')
 	const [pairsString, setPairsString] = useState<string>('')
+
 	// const [rightPosition, setRightPosition] = useState<number>(0)
 	// const [middlePosition, setMiddlePosition] = useState<number>(0)
 	// const [leftPosition, setLeftPosition] = useState<number>(0)
@@ -105,6 +106,7 @@ const App: React.FC = () => {
 				setOutput={setOutput}
 				setInput={setInput}
 				setIsKeyUp={setIsKeyUp}
+				
 			/>
 			<Lampboard
 				output={output}

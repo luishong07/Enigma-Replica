@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import "./Plugboard.css"
-// import { Card } from 'react-bootstrap'
 import Container from 'react-bootstrap/Container';
 import { Stack } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -11,26 +10,24 @@ interface Props {
     input: string,
     down: boolean,
     getAllInfo: any,
-    setPairsString: Function
+    setPairsString: Function,
 
 }
 
 
-const Plugboard: React.FC<Props> = ({setPairsString, down, input, pairs, setPairs,getAllInfo }: Props) => {
+const Plugboard: React.FC<Props> = ({  setPairsString, down, input, pairs, setPairs, getAllInfo }: Props) => {
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     const tempObject: letters = {}
     const usedLetters: string[] = []
     const [disabledPair, setDisabledPair] = useState<boolean>(false)
-    // const [down, setDown] = useState<boolean>(false)
 
     type letters = {
         [key: string]: string
     }
 
     useEffect(() => {
-        // console.log('re-render');
-        // console.log(input)
-    },)
+        selfPairing()
+    },[])
 
     const makePair = (letter: string, e: any) => {
         const inputLetter = e.target.value.toUpperCase()//key pressed
@@ -73,7 +70,7 @@ const Plugboard: React.FC<Props> = ({setPairsString, down, input, pairs, setPair
             // console.log(newAlphabet[i + 1], newAlphabet[i]);
             aggregateString += `${newAlphabet[i + 1]}${newAlphabet[i]} `
 
-            
+
         }
         setPairsString(aggregateString)
         setPairs(randomPairs)
@@ -81,6 +78,8 @@ const Plugboard: React.FC<Props> = ({setPairsString, down, input, pairs, setPair
     }
 
     const selfPairing = () => {//sets the letters in the pairs objects to themselves
+        console.log("pair");
+
         const mirrorPairs: letters = {}
         for (let i = 0; i < alphabet.length; i++) {
             mirrorPairs[alphabet[i] as keyof typeof mirrorPairs] = alphabet[i]
@@ -140,8 +139,8 @@ const Plugboard: React.FC<Props> = ({setPairsString, down, input, pairs, setPair
                         variant="primary">
                         Clear Pairs
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eraser" viewBox="0 0 16 16">
-                                <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293z" />
-                            </svg>
+                            <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293z" />
+                        </svg>
                     </Button>
                     <Button
                         className="btn btn-secondary"
@@ -150,8 +149,8 @@ const Plugboard: React.FC<Props> = ({setPairsString, down, input, pairs, setPair
                         variant="primary">
                         Copy All Info
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-copy" viewBox="0 0 16 16">
-                                <path fillRule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z" />
-                            </svg>
+                            <path fillRule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z" />
+                        </svg>
                     </Button>
                 </Stack>
                 <Stack className="letter-pair-container my-auto" direction="horizontal" >

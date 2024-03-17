@@ -1,7 +1,5 @@
 import "./Rotorboard.css"
 import Container from 'react-bootstrap/Container';
-// import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Card, Stack } from "react-bootstrap";
@@ -18,13 +16,14 @@ interface Props {
     setInput: Function,
     setIsKeyUp: Function,
     setRotorsIds: Function,
-    setInitialPositions: Function
+    setInitialPositions: Function,
+    
     // leftPosition: number,
     // middlePosition: number,
     // rightPosition: number
 }
 
-const Rotorboard: React.FC<Props> = ({setInitialPositions, setIsKeyUp, setInput, pairs, setOutput,setRotorsIds }: Props) => {
+const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput, pairs, setOutput,setRotorsIds }: Props) => {
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
 
@@ -199,6 +198,7 @@ const Rotorboard: React.FC<Props> = ({setInitialPositions, setIsKeyUp, setInput,
         setInput(letter)
         if (!(Object.keys(pairs).length === 0)) {//if there pairs object is not empty
             letter = pairs[letter as keyof typeof pairs]
+            
         }
 
         // if key is not held down and the key pressed is a letter 
