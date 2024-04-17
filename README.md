@@ -87,7 +87,7 @@ This Enigma Machine Simulator works very much like a real one in that it allows 
 
 ### Built With
 
-![Javascript][Javascript.js]
+![Typescript][Typescript.js]
 ![Bootstrap][Bootstrap.com]
 ![CSS][CSS]
 ![HTML][HTML]
@@ -187,6 +187,8 @@ Project Link: Future Link Here
 [product-screenshot]: public/enigma.png
 
 [Javascript.js]: https://img.shields.io/badge/JavaScript-%23f8d843?style=for-the-badge&logo=javascript&logoColor=black
+[Typescript.js]: https://img.shields.io/badge/Typescript-%233178C6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=%233178C6
+
 [P5]: https://img.shields.io/badge/P5.JS-%23ED225D?style=for-the-badge&logo=p5dotjs
 [CSS]: https://img.shields.io/badge/CSS-%231572B6?style=for-the-badge&logo=css3
 [HTML]: https://img.shields.io/badge/HTML-%23E34F26?style=for-the-badge&logo=html5&logoColor=white
