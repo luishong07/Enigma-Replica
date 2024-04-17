@@ -86,7 +86,7 @@ This Enigma Machine Simulator works very much like a real one in that it allows 
 
 
 ### Built With
-
+![React][React.js]
 ![Typescript][Typescript.js]
 ![Bootstrap][Bootstrap.com]
 ![CSS][CSS]
