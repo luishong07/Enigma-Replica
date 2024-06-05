@@ -86,7 +86,7 @@ const App: React.FC = () => {
 		// console.log(rotorsIds, initialPositions);
 		// console.log( `${rotorsIds} | ${initialPositions} ` );
 		try {
-            await navigator.clipboard.writeText(`${rotorsIds} | ${initialPositions} ` );
+            await navigator.clipboard.writeText(`${rotorsIds} | ${initialPositions} | ${pairsString} ` );
         } catch (error) {
             alert('Error copying to clipboard:');
         }

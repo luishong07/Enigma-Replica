@@ -3,6 +3,7 @@ import "./Plugboard.css"
 import Container from 'react-bootstrap/Container';
 import { Stack } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
+import { log } from "console";
 
 interface Props {
     pairs: {},
@@ -28,16 +29,23 @@ const Plugboard: React.FC<Props> = ({  setPairsString, down, input, pairs, setPa
     useEffect(() => {
         selfPairing()
     },[])
-
+    // III I II | 13 18 3 | Self-pairing 
     const makePair = (letter: string, e: any) => {
         const inputLetter = e.target.value.toUpperCase()//key pressed
+        const matchingLetter: any = document.getElementById(`${inputLetter}-match`)
+        // console.log(matchingLetter)
+        // console.log(inputLetter,letter)
+        // const matchingLetter = document.getElementById
         if (!Object.values(pairs).includes(inputLetter)) {
             // console.log('not included')
             usedLetters.push(inputLetter)
             tempObject[letter] = inputLetter
-
+            tempObject[inputLetter] = letter
+            // console.log(tempObject)
             setPairs({ ...pairs, ...tempObject })
-
+            // matchingLetter.value = inputLetter
+            e.target.disabled = true
+            matchingLetter.disabled = true
         } else {
             e.target.value = ""
             // console.log('else');
@@ -84,6 +92,7 @@ const Plugboard: React.FC<Props> = ({  setPairsString, down, input, pairs, setPa
         for (let i = 0; i < alphabet.length; i++) {
             mirrorPairs[alphabet[i] as keyof typeof mirrorPairs] = alphabet[i]
         }
+        setPairsString("Self-pairing")
         setPairs(mirrorPairs)
         setDisabledPair(true)
 
@@ -156,7 +165,7 @@ const Plugboard: React.FC<Props> = ({  setPairsString, down, input, pairs, setPa
                 <Stack className="letter-pair-container my-auto" direction="horizontal" >
                     {alphabet.map(letter => {
                         return <div key={letter} className={`px-2 py-3 mx-1 single-pair ${(input === letter && down) ? 'pressed' : 'unpressed'}`}>
-                            <input disabled={disabledPair} value={pairs[letter as keyof typeof pairs] ?? ""} onChange={(e) => makePair(letter, e)} className="plug" type="text" maxLength={1} />
+                            <input disabled={disabledPair} value={pairs[letter as keyof typeof pairs] ?? ""} onChange={(e) => makePair(letter, e)} id={`${letter}-match`} className="plug" type="text" maxLength={1} />
                             {/* <Button size="sm" variant="primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-down-up" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
