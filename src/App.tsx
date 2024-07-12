@@ -6,7 +6,6 @@ import Plugboard from "./Plugboard";
 const App: React.FC = () => {
 
 
-	// const letters: RegExp = /^[a-zA-Z]$/
 	type letters = {
 		[key: string]: string
 	}
@@ -83,7 +82,7 @@ const App: React.FC = () => {
 	}
 
 	const getAllInfo = async () => {
-		// console.log(rotorsIds, initialPositions);
+		console.log(pairs);
 		// console.log( `${rotorsIds} | ${initialPositions} ` );
 		try {
             await navigator.clipboard.writeText(`${rotorsIds} | ${initialPositions} | ${pairsString} ` );

@@ -3,7 +3,7 @@ import "./Plugboard.css"
 import Container from 'react-bootstrap/Container';
 import { Stack } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-import { log } from "console";
+// import { log } from "console";
 
 interface Props {
     pairs: {},
@@ -16,10 +16,11 @@ interface Props {
 }
 
 
-const Plugboard: React.FC<Props> = ({  setPairsString, down, input, pairs, setPairs, getAllInfo }: Props) => {
+const Plugboard: React.FC<Props> = ({ setPairsString, down, input, pairs, setPairs, getAllInfo }: Props) => {
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     const tempObject: letters = {}
     const usedLetters: string[] = []
+    const [tempString, setTempString] = useState<string>("")
     const [disabledPair, setDisabledPair] = useState<boolean>(false)
 
     type letters = {
@@ -28,43 +29,25 @@ const Plugboard: React.FC<Props> = ({  setPairsString, down, input, pairs, setPa
 
     useEffect(() => {
         selfPairing()
-    },[])
-    // III I II | 13 18 3 | Self-pairing 
-    const makePair = (letter: string, e: any) => {
+    }, [])
+
+    const makePair = (letter: string, e: any) => {//manual pairing of letters
         const inputLetter = e.target.value.toUpperCase()//key pressed
         const matchingLetter: any = document.getElementById(`${inputLetter}-match`)
-        // console.log(matchingLetter)
-        // console.log(inputLetter,letter)
-        // const matchingLetter = document.getElementById
         if (!Object.values(pairs).includes(inputLetter)) {
-            // console.log('not included')
+            setTempString(`${tempString} ${inputLetter}${letter} `)
             usedLetters.push(inputLetter)
             tempObject[letter] = inputLetter
             tempObject[inputLetter] = letter
-            // console.log(tempObject)
             setPairs({ ...pairs, ...tempObject })
-            // matchingLetter.value = inputLetter
+            // console.log({ ...pairs, ...tempObject });
+
+            setPairsString(tempString)
             e.target.disabled = true
             matchingLetter.disabled = true
         } else {
             e.target.value = ""
-            // console.log('else');
-
         }
-
-        // setPairs({...pairs,...tempObject})
-
-        // tempObject[letter] = inputLetter
-        // console.log(tempObject)
-        // setPairs({...pairs,...tempObject})
-
-        // console.log(letter, inputLetter)
-        // e.target.value = letter
-        // if(letter === inputLetter){
-        //     console.log('poop')
-        //     e.target.value = ""
-        //     return
-        // }
 
     }
 
@@ -75,9 +58,7 @@ const Plugboard: React.FC<Props> = ({  setPairsString, down, input, pairs, setPa
         for (let i = 0; i < newAlphabet.length; i += 2) {
             randomPairs[newAlphabet[i]] = newAlphabet[i + 1]
             randomPairs[newAlphabet[i + 1]] = newAlphabet[i]
-            // console.log(newAlphabet[i + 1], newAlphabet[i]);
             aggregateString += `${newAlphabet[i + 1]}${newAlphabet[i]} `
-
 
         }
         setPairsString(aggregateString)
@@ -97,21 +78,12 @@ const Plugboard: React.FC<Props> = ({  setPairsString, down, input, pairs, setPa
         setDisabledPair(true)
 
     }
+
     const clearPairs = () => {//empties the pairs object and enables the inputs
+        setPairsString("Empty")
         setPairs({})
         setDisabledPair(false)
     }
-
-
-    // onkeydown = (e:any)=>{
-    //     if(!e.repeat){
-    //         setDown(true)
-    //         console.log(input)
-    //     }
-    // }
-    // onkeyup =()=>{
-    //     setDown(false)        
-    // }
 
     return (
         <Container fluid className="plugboard-container py-2">

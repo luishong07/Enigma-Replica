@@ -34,7 +34,9 @@ const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput
     const selectRandomRotors = () => {
         const allRotors: string[] = ["I", "II", "III", "IV", "V"]
         const shuffled = [...allRotors].sort(() => 0.5 - Math.random())
-        const subArray = shuffled.slice(0, 3)
+        // const subArray = shuffled.slice(0, 3)
+        const subArray = ["V", "I", "IV"]
+
         // console.log(shuffled)
         // const rightValue = `rotor${subArray[0]}` as keyof typeof Rotors
         // const middleValue = `rotor${subArray[1]}` as keyof typeof Rotors
@@ -58,9 +60,12 @@ const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput
         setCurrentReverseMiddleRotor(Rotors[`reverse${middleValue}` as keyof typeof Rotors])
         setCurrentReverseLeftRotor(Rotors[`reverse${leftValue}` as keyof typeof Rotors])
     }
-    const [rightPosition, setRightPosition] = useState<number>(generateRandomRotorPosition())
-    const [middlePosition, setMiddlePosition] = useState<number>(generateRandomRotorPosition())
-    const [leftPosition, setLeftPosition] = useState<number>(generateRandomRotorPosition())
+    // const [rightPosition, setRightPosition] = useState<number>(generateRandomRotorPosition())
+    // const [middlePosition, setMiddlePosition] = useState<number>(generateRandomRotorPosition())
+    // const [leftPosition, setLeftPosition] = useState<number>(generateRandomRotorPosition())
+    const [rightPosition, setRightPosition] = useState<number>(0)
+    const [middlePosition, setMiddlePosition] = useState<number>(0)
+    const [leftPosition, setLeftPosition] = useState<number>(0)
 
 
     useEffect(() => {
@@ -196,7 +201,8 @@ const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput
         // console.log(letter);
         let inputLetter = letter
         setInput(letter)
-        if (!(Object.keys(pairs).length === 0)) {//if there pairs object is not empty
+        // console.log(pairs)
+        if (!(Object.keys(pairs).length === 0)) {//if the pairs object is not empty
             letter = pairs[letter as keyof typeof pairs]
             
         }
@@ -241,7 +247,7 @@ const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput
             // console.log(alphabet[rightRotorReverseOutput])
             setMessage(message + inputLetter)
 
-            setEncryptedMessage(encryptedMessage + alphabet[rightRotorReverseOutput])
+            setEncryptedMessage(encryptedMessage + pairs[alphabet[rightRotorReverseOutput] as keyof typeof pairs])
             // console.log(leftPosition, middlePosition, rightPosition)
         }
 
