@@ -26,16 +26,54 @@ interface Props {
 const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput, pairs, setOutput,setRotorsIds }: Props) => {
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
+    const { reflector }: any = Rotors
+    // current arrays of numbers for rotors 
+
+    const [rightRotorValue, setRightRotorValue] = useState<string>('')
+    const [middleRotorValue, setMiddleRotorValue] = useState<string>('')
+    const [leftRotorValue, setLeftRotorValue] = useState<string>('')
+
+
+    const [currentRightRotor, setCurrentRightRotor] = useState<number[]>([])
+    const [currentMiddleRotor, setCurrentMiddleRotor] = useState<number[]>([])
+    const [currentLeftRotor, setCurrentLeftRotor] = useState<number[]>([])
+    // reverse versions of current rotors
+    const [currentReverseRightRotor, setCurrentReverseRightRotor] = useState<number[]>([])
+    const [currentReverseMiddleRotor, setCurrentReverseMiddleRotor] = useState<number[]>([])
+    const [currentReverseLeftRotor, setCurrentReverseLeftRotor] = useState<number[]>([])
+    
+
+    // const [rightPosition, setRightPosition] = useState<number>(1)
+    // const [middlePosition, setMiddlePosition] = useState<number>(10)
+    // const [leftPosition, setLeftPosition] = useState<number>(9)
+
+    // const [inputLetter, setInputLetter] = useState('')
+
+    const [message, setMessage] = useState<string>('')//input message from user
+    const [encryptedMessage, setEncryptedMessage] = useState<string>('')//encrypted message
+    // const [isKeyPressed, setIsKeyPressed] = useState(false);
+
+
+    useEffect(() => {
+        selectRandomRotors()
+    }, [])
 
     const generateRandomRotorPosition = (): number => {
         let randomPosition: number = Math.floor(Math.random() * 25)
         return randomPosition
     }
+
+    // current position of each rotor; 0 to 25
+    const [rightPosition, setRightPosition] = useState<number>(generateRandomRotorPosition())
+    const [middlePosition, setMiddlePosition] = useState<number>(generateRandomRotorPosition())
+    const [leftPosition, setLeftPosition] = useState<number>(generateRandomRotorPosition())
+    // setInitialPositions(`${leftPosition}, ${middlePosition}, ${rightPosition}`)
+
     const selectRandomRotors = () => {
         const allRotors: string[] = ["I", "II", "III", "IV", "V"]
         const shuffled = [...allRotors].sort(() => 0.5 - Math.random())
-        // const subArray = shuffled.slice(0, 3)
-        const subArray = ["V", "I", "IV"]
+        const subArray = shuffled.slice(0, 3)
+        // const subArray = ["V", "I", "IV"]
 
         // console.log(shuffled)
         // const rightValue = `rotor${subArray[0]}` as keyof typeof Rotors
@@ -63,44 +101,9 @@ const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput
     // const [rightPosition, setRightPosition] = useState<number>(generateRandomRotorPosition())
     // const [middlePosition, setMiddlePosition] = useState<number>(generateRandomRotorPosition())
     // const [leftPosition, setLeftPosition] = useState<number>(generateRandomRotorPosition())
-    const [rightPosition, setRightPosition] = useState<number>(0)
-    const [middlePosition, setMiddlePosition] = useState<number>(0)
-    const [leftPosition, setLeftPosition] = useState<number>(0)
-
-
-    useEffect(() => {
-        selectRandomRotors()
-    }, [])
-    const { reflector }: any = Rotors
-    // current arrays of numbers for rotors 
-
-    const [rightRotorValue, setRightRotorValue] = useState<string>('')
-    const [middleRotorValue, setMiddleRotorValue] = useState<string>('')
-    const [leftRotorValue, setLeftRotorValue] = useState<string>('')
-
-
-    const [currentRightRotor, setCurrentRightRotor] = useState<number[]>([])
-    const [currentMiddleRotor, setCurrentMiddleRotor] = useState<number[]>([])
-    const [currentLeftRotor, setCurrentLeftRotor] = useState<number[]>([])
-    // reverse versions of current rotors
-    const [currentReverseRightRotor, setCurrentReverseRightRotor] = useState<number[]>(Rotors.reverseI)
-    const [currentReverseMiddleRotor, setCurrentReverseMiddleRotor] = useState<number[]>(Rotors.reverseII)
-    const [currentReverseLeftRotor, setCurrentReverseLeftRotor] = useState<number[]>(Rotors.reverseIII)
-    // current position of each rotor; 0 to 25
-    // const [rightPosition, setRightPosition] = useState<number>(generateRandomRotorPosition())
-    // const [middlePosition, setMiddlePosition] = useState<number>(generateRandomRotorPosition())
-    // const [leftPosition, setLeftPosition] = useState<number>(generateRandomRotorPosition())
-    // setInitialPositions(`${leftPosition}, ${middlePosition}, ${rightPosition}`)
-
-    // const [rightPosition, setRightPosition] = useState<number>(1)
-    // const [middlePosition, setMiddlePosition] = useState<number>(10)
-    // const [leftPosition, setLeftPosition] = useState<number>(9)
-
-    // const [inputLetter, setInputLetter] = useState('')
-
-    const [message, setMessage] = useState<string>('')//input message from user
-    const [encryptedMessage, setEncryptedMessage] = useState<string>('')//encrypted message
-    // const [isKeyPressed, setIsKeyPressed] = useState(false);
+    // const [rightPosition, setRightPosition] = useState<number>(0)
+    // const [middlePosition, setMiddlePosition] = useState<number>(0)
+    // const [leftPosition, setLeftPosition] = useState<number>(0)
 
 
     const changeRotor = (value: string, id: string) => {//function for dropdown menu to select a rotor; I to V
