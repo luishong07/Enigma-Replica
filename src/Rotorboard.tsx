@@ -246,7 +246,7 @@ const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput
 
             const rightToOutputReverseOffset = 0 - rightPosition
             const rightRotorReverseOutput = checkOverflow(currentReverseRightRotor[middleRotorReverseOutput] + rightToOutputReverseOffset)
-            setOutput(alphabet[rightRotorReverseOutput])
+            setOutput(pairs[alphabet[rightRotorReverseOutput] as keyof typeof pairs])
             // console.log(alphabet[rightRotorReverseOutput])
             setMessage(message + inputLetter)
 
