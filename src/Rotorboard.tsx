@@ -54,10 +54,6 @@ const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput
     // const [isKeyPressed, setIsKeyPressed] = useState(false);
 
 
-    useEffect(() => {
-        selectRandomRotors()
-    }, [])
-
     const generateRandomRotorPosition = (): number => {
         let randomPosition: number = Math.floor(Math.random() * 25)
         return randomPosition
@@ -68,6 +64,19 @@ const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput
     const [middlePosition, setMiddlePosition] = useState<number>(generateRandomRotorPosition())
     const [leftPosition, setLeftPosition] = useState<number>(generateRandomRotorPosition())
     // setInitialPositions(`${leftPosition}, ${middlePosition}, ${rightPosition}`)
+
+    useEffect(()=>{//runs only on initial
+        selectRandomRotors()
+    },[])
+    useEffect(() => {
+        if(!encryptedMessage){//if encrypted message is empty update string as needed. example when clicking button
+            setInitialPositions(`${leftPosition +1} ${middlePosition+1} ${rightPosition+1}`)
+        }
+    }, [leftPosition, middlePosition, rightPosition])
+
+    
+
+    
 
     const selectRandomRotors = () => {
         const allRotors: string[] = ["I", "II", "III", "IV", "V"]
@@ -106,7 +115,7 @@ const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput
     // const [leftPosition, setLeftPosition] = useState<number>(0)
 
 
-    const changeRotor = (value: string, id: string) => {//function for dropdown menu to select a rotor; I to V
+    const changeRotor = async (value: string, id: string) => {//function for dropdown menu to select a rotor; I to V
         const newRotorKey = `rotor${value}` as keyof typeof Rotors
         const newReverseRotorKey = `reverse${value}` as keyof typeof Rotors
 
@@ -119,19 +128,25 @@ const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput
             setLeftRotorValue(value)
             setCurrentLeftRotor(Rotors[newRotorKey])
             setCurrentReverseLeftRotor(Rotors[newReverseRotorKey])
+            setRotorsIds(`${value} ${middleRotorValue} ${rightRotorValue}`)
         }
 
         if (id === "middleRotorSelector") {
             setMiddleRotorValue(value)
             setCurrentMiddleRotor(Rotors[newRotorKey])
             setCurrentReverseMiddleRotor(Rotors[newReverseRotorKey])
+            setRotorsIds(`${leftRotorValue} ${value} ${rightRotorValue}`)
         }
 
         if (id === "rightRotorSelector") {
             setRightRotorValue(value)
             setCurrentRightRotor(Rotors[newRotorKey])
             setCurrentReverseRightRotor(Rotors[newReverseRotorKey])
+            setRotorsIds(`${leftRotorValue} ${middleRotorValue} ${value}`)
         }
+        // await setRotorsIds(`${leftRotorValue} ${middleRotorValue} ${rightRotorValue}`)
+        // console.log(`${leftRotorValue} ${middleRotorValue} ${rightRotorValue}`)
+        // console.log(value)
 
     }
 
@@ -174,28 +189,42 @@ const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput
 
     const seconds = (): void => {//runs on clicking the down button for the right rotor; increases right position by 1
         // console.log('seconds')
+        // setInitialPositions(`${leftPosition +1} ${middlePosition+1} ${rightPosition+1}`)
+        let newRightPosition = checkOverflow(rightPosition + 1)
         setRightPosition(checkOverflow(rightPosition + 1))
+        // setInitialPositions(`${leftPosition +1} ${middlePosition+1} ${newRightPosition}`)
+
     }
     const antiSeconds = (): void => {//runs on clicking the up button for the right rotor; decreases right position by 1
         // console.log('antiseconds')
+        let newRightPosition = checkOverflow(rightPosition - 1)
         setRightPosition(checkOverflow(rightPosition - 1))
-    }
+        // setInitialPositions(`${leftPosition +1} ${middlePosition+1} ${newRightPosition}`)
 
+    }
     const minutes = (): void => {//runs on clicking the down button for the middle rotor; increases middle position by 1
         // console.log('minutes');
+        let newMiddlePosition = checkOverflow(middlePosition + 1)
         setMiddlePosition(checkOverflow(middlePosition + 1))
+        // setInitialPositions(`${leftPosition +1} ${newMiddlePosition} ${rightPosition+1}`)
     }
     const antiMinutes = (): void => {//runs on clicking the up button for the middle rotor; decreases middle position by 1
         // console.log('antiminutes')
+        let newMiddlePosition = checkOverflow(middlePosition - 1)
         setMiddlePosition(checkOverflow(middlePosition - 1))
+        // setInitialPositions(`${leftPosition +1} ${newMiddlePosition} ${rightPosition+1}`)
     }
     const hours = (): void => {//runs on clicking the down button for the left rotor; increases left position by 1
         // console.log("hours")
+        let newLeftPostion = checkOverflow(leftPosition + 1)
         setLeftPosition(checkOverflow(leftPosition + 1))
+        // setInitialPositions(`${newLeftPostion} ${middlePosition+1} ${rightPosition+1}`)
     }
     const antiHours = (): void => {//runs on clicking the up button for the left rotor; decreases left position by 1
         // console.log('antihours')
+        let newLeftPostion = checkOverflow(leftPosition - 1)
         setLeftPosition(checkOverflow(leftPosition - 1))
+        // setInitialPositions(`${newLeftPostion} ${middlePosition+1} ${rightPosition+1}`)
     }
 
     const handleKeyDown = (event: any) => {

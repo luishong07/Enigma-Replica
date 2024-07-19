@@ -82,7 +82,7 @@ const App: React.FC = () => {
 	}
 
 	const getAllInfo = async () => {
-		console.log(pairs);
+		// console.log(pairs);
 		// console.log( `${rotorsIds} | ${initialPositions} ` );
 		try {
             await navigator.clipboard.writeText(`${rotorsIds} | ${initialPositions} | ${pairsString} ` );
@@ -92,9 +92,6 @@ const App: React.FC = () => {
 
 
 	}
-
-
-
 
 	return (
 		<div className="App">
