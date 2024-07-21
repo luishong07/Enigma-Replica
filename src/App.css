@@ -1,6 +1,7 @@
 .App {
   text-align: center;
-  /* height: 100vh; */
+  /* height: 200dvh; */
+  outline: red 1px solid;
   /* overflow: hidden; */
 }
 body{
@@ -14,9 +15,9 @@ body{
 
 
 .rotors{
-  outline:  red solid 1px;
+  /* outline:  red solid 1px; */
   background-color: #282c34;
-  min-height: 25vh;
+  /* min-height: 25vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,9 +26,9 @@ body{
   color: white;
 }
 .lampboard{
-  outline:  red solid 1px;
+  /* outline:  red solid 1px; */
   background-color: #282c34; 
-  min-height: 50vh;
+  /* min-height: 50vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,9 +37,9 @@ body{
   color: white;
 }
 .plugboard{
-  outline:  red solid 1px;
+  /* outline:  red solid 1px; */
   background-color: #282c34;
-  min-height: 25vh;
+  /* min-height: 25vh; */
   display: flex;
   flex-direction: column;
   align-items: center;

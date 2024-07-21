@@ -1,9 +1,9 @@
 .base {
     background-color: #3b0400;
     background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
-    font: arial;
+    /* font: arial; */
     color: white;
-    min-height: 42dvh;
+    min-height: 44dvh;
 }
 @media (width >= 1500px) {
     .base {

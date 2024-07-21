@@ -75,9 +75,6 @@ const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput
     }, [leftPosition, middlePosition, rightPosition])
 
     
-
-    
-
     const selectRandomRotors = () => {
         const allRotors: string[] = ["I", "II", "III", "IV", "V"]
         const shuffled = [...allRotors].sort(() => 0.5 - Math.random())
