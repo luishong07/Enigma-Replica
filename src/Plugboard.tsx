@@ -3,7 +3,6 @@ import "./Plugboard.css"
 import Container from 'react-bootstrap/Container';
 import { Stack } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-// import { log } from "console";
 
 interface Props {
     pairs: {},
@@ -31,18 +30,23 @@ const Plugboard: React.FC<Props> = ({ setPairsString, down, input, pairs, setPai
         selfPairing()
     }, [])
 
-    const makePair = (letter: string, e: any) => {//manual pairing of letters
+    
+
+    const makePair = async (letter: string, e: any) => {//manual pairing of letters
         const inputLetter = e.target.value.toUpperCase()//key pressed
         const matchingLetter: any = document.getElementById(`${inputLetter}-match`)
+
+        setTempString(`${tempString} ${inputLetter}${letter}`)
+        setPairsString(`${tempString} ${inputLetter}${letter}`)
+
         if (!Object.values(pairs).includes(inputLetter)) {
-            setTempString(`${tempString} ${inputLetter}${letter} `)
+
             usedLetters.push(inputLetter)
             tempObject[letter] = inputLetter
             tempObject[inputLetter] = letter
-            setPairs({ ...pairs, ...tempObject })
-            // console.log({ ...pairs, ...tempObject });
 
-            setPairsString(tempString)
+            setPairs({ ...pairs, ...tempObject })
+
             e.target.disabled = true
             matchingLetter.disabled = true
         } else {
@@ -59,20 +63,21 @@ const Plugboard: React.FC<Props> = ({ setPairsString, down, input, pairs, setPai
             randomPairs[newAlphabet[i]] = newAlphabet[i + 1]
             randomPairs[newAlphabet[i + 1]] = newAlphabet[i]
             aggregateString += `${newAlphabet[i + 1]}${newAlphabet[i]} `
-
         }
+       
         setPairsString(aggregateString)
         setPairs(randomPairs)
         setDisabledPair(true)
     }
 
     const selfPairing = () => {//sets the letters in the pairs objects to themselves
-        console.log("pair");
 
         const mirrorPairs: letters = {}
+
         for (let i = 0; i < alphabet.length; i++) {
             mirrorPairs[alphabet[i] as keyof typeof mirrorPairs] = alphabet[i]
         }
+
         setPairsString("Self-pairing")
         setPairs(mirrorPairs)
         setDisabledPair(true)
@@ -80,6 +85,7 @@ const Plugboard: React.FC<Props> = ({ setPairsString, down, input, pairs, setPai
     }
 
     const clearPairs = () => {//empties the pairs object and enables the inputs
+        setTempString("")
         setPairsString("Empty")
         setPairs({})
         setDisabledPair(false)
@@ -138,11 +144,6 @@ const Plugboard: React.FC<Props> = ({ setPairsString, down, input, pairs, setPai
                     {alphabet.map(letter => {
                         return <div key={letter} className={`px-2 py-3 mx-1 single-pair ${(input === letter && down) ? 'pressed' : 'unpressed'}`}>
                             <input disabled={disabledPair} value={pairs[letter as keyof typeof pairs] ?? ""} onChange={(e) => makePair(letter, e)} id={`${letter}-match`} className="plug" type="text" maxLength={1} />
-                            {/* <Button size="sm" variant="primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-down-up" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
-                                    </svg>
-                                </Button> */}
                             <div className="arrows my-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-down-up" viewBox="0 0 16 16">
                                     <path fillRule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />

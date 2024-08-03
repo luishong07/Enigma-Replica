@@ -9,7 +9,6 @@ import { Rotors } from "./Rotors";
 
 
 
-// import Modal from 'react-bootstrap/Modal';
 interface Props {
     pairs: {}
     setOutput: Function,
@@ -17,13 +16,9 @@ interface Props {
     setIsKeyUp: Function,
     setRotorsIds: Function,
     setInitialPositions: Function,
-    
-    // leftPosition: number,
-    // middlePosition: number,
-    // rightPosition: number
 }
 
-const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput, pairs, setOutput,setRotorsIds }: Props) => {
+const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput, pairs, setOutput, setRotorsIds }: Props) => {
     const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
     const { reflector }: any = Rotors
@@ -41,17 +36,11 @@ const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput
     const [currentReverseRightRotor, setCurrentReverseRightRotor] = useState<number[]>([])
     const [currentReverseMiddleRotor, setCurrentReverseMiddleRotor] = useState<number[]>([])
     const [currentReverseLeftRotor, setCurrentReverseLeftRotor] = useState<number[]>([])
-    
 
-    // const [rightPosition, setRightPosition] = useState<number>(1)
-    // const [middlePosition, setMiddlePosition] = useState<number>(10)
-    // const [leftPosition, setLeftPosition] = useState<number>(9)
 
-    // const [inputLetter, setInputLetter] = useState('')
 
     const [message, setMessage] = useState<string>('')//input message from user
     const [encryptedMessage, setEncryptedMessage] = useState<string>('')//encrypted message
-    // const [isKeyPressed, setIsKeyPressed] = useState(false);
 
 
     const generateRandomRotorPosition = (): number => {
@@ -63,34 +52,28 @@ const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput
     const [rightPosition, setRightPosition] = useState<number>(generateRandomRotorPosition())
     const [middlePosition, setMiddlePosition] = useState<number>(generateRandomRotorPosition())
     const [leftPosition, setLeftPosition] = useState<number>(generateRandomRotorPosition())
-    // setInitialPositions(`${leftPosition}, ${middlePosition}, ${rightPosition}`)
 
-    useEffect(()=>{//runs only on initial
+    useEffect(() => {//runs only on initial
         selectRandomRotors()
-    },[])
+    }, [])
     useEffect(() => {
-        if(!encryptedMessage){//if encrypted message is empty update string as needed. example when clicking button
-            setInitialPositions(`${leftPosition +1} ${middlePosition+1} ${rightPosition+1}`)
+        if (!encryptedMessage) {//if encrypted message is empty update string as needed. example when clicking button
+            setInitialPositions(`${leftPosition + 1} ${middlePosition + 1} ${rightPosition + 1}`)
         }
     }, [leftPosition, middlePosition, rightPosition])
 
-    
+
     const selectRandomRotors = () => {
         const allRotors: string[] = ["I", "II", "III", "IV", "V"]
         const shuffled = [...allRotors].sort(() => 0.5 - Math.random())
         const subArray = shuffled.slice(0, 3)
-        // const subArray = ["V", "I", "IV"]
 
-        // console.log(shuffled)
-        // const rightValue = `rotor${subArray[0]}` as keyof typeof Rotors
-        // const middleValue = `rotor${subArray[1]}` as keyof typeof Rotors
-        // const leftValue = `rotor${subArray[2]}` as keyof typeof Rotors
 
         const rightValue = subArray[0]
         const middleValue = subArray[1]
         const leftValue = subArray[2]
         setRotorsIds(`${leftValue} ${middleValue} ${rightValue}`)
-        setInitialPositions(`${leftPosition +1} ${middlePosition+1} ${rightPosition+1}`)
+        setInitialPositions(`${leftPosition + 1} ${middlePosition + 1} ${rightPosition + 1}`)
 
         setRightRotorValue(rightValue)
         setMiddleRotorValue(middleValue)
@@ -104,22 +87,14 @@ const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput
         setCurrentReverseMiddleRotor(Rotors[`reverse${middleValue}` as keyof typeof Rotors])
         setCurrentReverseLeftRotor(Rotors[`reverse${leftValue}` as keyof typeof Rotors])
     }
-    // const [rightPosition, setRightPosition] = useState<number>(generateRandomRotorPosition())
-    // const [middlePosition, setMiddlePosition] = useState<number>(generateRandomRotorPosition())
-    // const [leftPosition, setLeftPosition] = useState<number>(generateRandomRotorPosition())
-    // const [rightPosition, setRightPosition] = useState<number>(0)
-    // const [middlePosition, setMiddlePosition] = useState<number>(0)
-    // const [leftPosition, setLeftPosition] = useState<number>(0)
-
+  
 
     const changeRotor = async (value: string, id: string) => {//function for dropdown menu to select a rotor; I to V
         const newRotorKey = `rotor${value}` as keyof typeof Rotors
         const newReverseRotorKey = `reverse${value}` as keyof typeof Rotors
 
 
-        // setCurrentRightRotor(Rotors[`rotor${rightValue}` as keyof typeof Rotors ])
-        // setCurrentMiddleRotor(Rotors[`rotor${middleValue}` as keyof typeof Rotors ])
-        // setCurrentLeftRotor(Rotors[`rotor${leftValue}` as keyof typeof Rotors ])
+     
 
         if (id === "leftRotorSelector") {
             setLeftRotorValue(value)
@@ -141,16 +116,11 @@ const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput
             setCurrentReverseRightRotor(Rotors[newReverseRotorKey])
             setRotorsIds(`${leftRotorValue} ${middleRotorValue} ${value}`)
         }
-        // await setRotorsIds(`${leftRotorValue} ${middleRotorValue} ${rightRotorValue}`)
-        // console.log(`${leftRotorValue} ${middleRotorValue} ${rightRotorValue}`)
-        // console.log(value)
-
+       
     }
 
     const clockRotation = () => {//this runs only once regardless of key being continuosly being pressed
 
-        // if (!e.repeat) {
-        // console.log(e.key.toUpperCase())
         setRightPosition(rightPosition + 1)
         if (rightPosition >= 25) {
             setRightPosition(0)
@@ -185,160 +155,80 @@ const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput
     }
 
     const seconds = (): void => {//runs on clicking the down button for the right rotor; increases right position by 1
-        // console.log('seconds')
-        // setInitialPositions(`${leftPosition +1} ${middlePosition+1} ${rightPosition+1}`)
-        let newRightPosition = checkOverflow(rightPosition + 1)
         setRightPosition(checkOverflow(rightPosition + 1))
-        // setInitialPositions(`${leftPosition +1} ${middlePosition+1} ${newRightPosition}`)
 
     }
     const antiSeconds = (): void => {//runs on clicking the up button for the right rotor; decreases right position by 1
-        // console.log('antiseconds')
-        let newRightPosition = checkOverflow(rightPosition - 1)
         setRightPosition(checkOverflow(rightPosition - 1))
-        // setInitialPositions(`${leftPosition +1} ${middlePosition+1} ${newRightPosition}`)
 
     }
     const minutes = (): void => {//runs on clicking the down button for the middle rotor; increases middle position by 1
-        // console.log('minutes');
-        let newMiddlePosition = checkOverflow(middlePosition + 1)
         setMiddlePosition(checkOverflow(middlePosition + 1))
-        // setInitialPositions(`${leftPosition +1} ${newMiddlePosition} ${rightPosition+1}`)
     }
     const antiMinutes = (): void => {//runs on clicking the up button for the middle rotor; decreases middle position by 1
-        // console.log('antiminutes')
-        let newMiddlePosition = checkOverflow(middlePosition - 1)
         setMiddlePosition(checkOverflow(middlePosition - 1))
-        // setInitialPositions(`${leftPosition +1} ${newMiddlePosition} ${rightPosition+1}`)
     }
     const hours = (): void => {//runs on clicking the down button for the left rotor; increases left position by 1
-        // console.log("hours")
-        let newLeftPostion = checkOverflow(leftPosition + 1)
         setLeftPosition(checkOverflow(leftPosition + 1))
-        // setInitialPositions(`${newLeftPostion} ${middlePosition+1} ${rightPosition+1}`)
     }
     const antiHours = (): void => {//runs on clicking the up button for the left rotor; decreases left position by 1
-        // console.log('antihours')
-        let newLeftPostion = checkOverflow(leftPosition - 1)
         setLeftPosition(checkOverflow(leftPosition - 1))
-        // setInitialPositions(`${newLeftPostion} ${middlePosition+1} ${rightPosition+1}`)
     }
 
     const handleKeyDown = (event: any) => {
 
         let letter = event.key.toUpperCase()
-        // console.log(letter);
         let inputLetter = letter
         setInput(letter)
-        // console.log(pairs)
         if (!(Object.keys(pairs).length === 0)) {//if the pairs object is not empty
             letter = pairs[letter as keyof typeof pairs]
-            
+
         }
 
         // if key is not held down and the key pressed is a letter 
         // almost everything should happen inside this is statement
         if (!event.repeat && alphabet.includes(letter)) {
             clockRotation()
-            // setMessage(message + letter)
-            // console.log(letter);
+
 
             const inputIndex = alphabet.indexOf(letter)//index of letter pressed
 
             const inputToRightOffset = rightPosition - 0// this is always zero since the input does not rotate: ;
             const rightRotorOutput = currentRightRotor[checkOverflow(inputIndex + inputToRightOffset)]
-            // console.log(alphabet[rightRotorOutput])
 
             const rightToMiddleOffset = middlePosition - rightPosition
             const middleRotorOutput = currentMiddleRotor[checkOverflow(rightRotorOutput + rightToMiddleOffset)]
-            // console.log(alphabet[middleRotorOutput])
 
             const middleToLeftOffset = leftPosition - middlePosition
             const leftRotorOutput = currentLeftRotor[checkOverflow(middleRotorOutput + middleToLeftOffset)]
-            // console.log(alphabet[leftRotorOutput])
 
             const leftToReflectorOffset = 0 - leftPosition
             const reflectorToLeftOffset = leftPosition - 0
             const reflectorOutput = checkOverflow(reflector[checkOverflow(leftRotorOutput + leftToReflectorOffset)] + reflectorToLeftOffset)
-            // console.log(alphabet[reflectorOutput])
 
             const leftToMiddleReverseOffset = middlePosition - leftPosition
             const leftRotorReverseOutput = checkOverflow(currentReverseLeftRotor[reflectorOutput] + leftToMiddleReverseOffset)
-            // console.log(alphabet[leftRotorReverseOutput])
 
             const middleToRightReverseOffset = rightPosition - middlePosition
             const middleRotorReverseOutput = checkOverflow(currentReverseMiddleRotor[leftRotorReverseOutput] + middleToRightReverseOffset)
-            // console.log(alphabet[middleRotorReverseOutput])
 
             const rightToOutputReverseOffset = 0 - rightPosition
             const rightRotorReverseOutput = checkOverflow(currentReverseRightRotor[middleRotorReverseOutput] + rightToOutputReverseOffset)
             setOutput(pairs[alphabet[rightRotorReverseOutput] as keyof typeof pairs])
-            // console.log(alphabet[rightRotorReverseOutput])
             setMessage(message + inputLetter)
 
             setEncryptedMessage(encryptedMessage + pairs[alphabet[rightRotorReverseOutput] as keyof typeof pairs])
-            // console.log(leftPosition, middlePosition, rightPosition)
         }
 
 
 
-        // if (event.key === 'Enter') {
-        //     console.log('Enter key pressed');
-        // }
-        // console.log(event)
-        // if (!isKeyPressed) {
-        //     console.log("once");
 
-        //     setIsKeyPressed(true);
-        //     if(!alphabet.includes(event.key.toUpperCase())){//if key is not a capital letter, do nothing
-        //         console.log("poop")
-        //         return
-        //     }else{//else add letter to message
-        //         setMessage(message+event.key.toString())
-
-        //     }
-
-
-        //     // Start your continuous action or handle the key press event
-        // }
     };
     const handleKeyUp = () => {
-        // console.log('up');
 
     }
 
-    // const handleKeyUp = (event:any) => {
-    //     // if (event.key === 'Enter') {
-    //     //     console.log('Enter key released');
-    //     // }
-    //     // console.log("key released!!",isKeyPressed);
 
-
-    //     if (isKeyPressed) {
-    //         setIsKeyPressed(false);
-    //         // Stop your continuous action or handle the key release event
-    //     }
-    // };
-
-    // const checkValidKey = (event: any) => {
-    //     console.log(event)
-    //     // if(isKeyPressed){
-
-    //     // }
-    //     // if(e.key.match(letters)){
-    //     //     console.log("mathch!!");
-    //     // }else{
-    //     //     console.log("no match :(");
-
-    //     // }
-    //     // console.log(e)
-    //     // const currentMessage = e.target.value.toUpperCase()
-
-    //     // console.log(currentMessage[currentMessage.length-1])
-    //     // setMessage(currentMessage)
-    //     // let randomIndex = Math.floor(Math.random() * alphabet.length)
-    //     // setEncryptedMessage(encryptedMessage+alphabet[randomIndex])
-    // }
     const clearMessages = () => {
         setMessage('')
         setEncryptedMessage('')
@@ -366,7 +256,6 @@ const Rotorboard: React.FC<Props> = ({ setInitialPositions, setIsKeyUp, setInput
                         <textarea
                             className="message"
                             value={message}
-                            // onKeyDown={(e) => checkValidKey(e)}
                             placeholder="Enter your message here"
                             onChange={() => { }}
                             onKeyDown={(e) => { handleKeyDown(e) }}

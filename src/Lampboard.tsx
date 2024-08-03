@@ -1,10 +1,6 @@
 import Container from 'react-bootstrap/Container';
-// import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col';
 import './Lampboard.css'
-import { useEffect, useState } from 'react';
 import { Stack } from 'react-bootstrap';
-// import Badge from 'react-bootstrap/Badge';
 
 interface Props {
     encryptedLetter: string,
@@ -17,29 +13,8 @@ const Lampboard: React.FC<Props> = ({ down,encryptedLetter, isKeyUp,output }: Pr
     const firstRow: string[] = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"]
     const secondRow: string[] = ["A", "S", "D", "F", "G", "H", "J", "K", "L"]
     const thirdRow: string[] = ["Z", "X", "C", "V", "B", "N", "M"]
-    // const [down, setDown] = useState<boolean>(false)
-    // let down = false
-    useEffect(() => {
-        // console.log(output,down)
-        // clearLight()
-        
-
-    },)
-
-    // onkeydown = (e:any)=>{
-    //     if(!e.repeat){
-    //         setDown(true)
-    //         console.log(down)
-    //     }
-    // }
-    // onkeyup =()=>{
-    //     console.log('up')
-    //     setDown(false)
-    //     console.log(down)
-    // }
     
-    const clearLight = ()=>{
-    }
+    
     return (
         <Container fluid className='base d-grid'>
             <Stack className={`lamp-rows-container my-auto mx-3 `} direction='vertical'>
@@ -66,29 +41,7 @@ const Lampboard: React.FC<Props> = ({ down,encryptedLetter, isKeyUp,output }: Pr
                 </Stack>
             </Stack>
         </Container>
-        // <Container fluid className="base">
-        //     <Row className="lamp-row">
-        //         {
-        //             firstRow.map(e => {
-        //                 return <Col className={`flex-item ${(encryptedLetter === e && !isKeyUp) ? 'lit' : ""}`} as={"span"} key={e}>{e}</Col>
-        //             })
-        //         }
-        //     </Row>
-        //     <Row className="lamp-row">
-        //         {
-        //             secondRow.map(e => {
-        //                 return <Col className={`flex-item ${(encryptedLetter === e && !isKeyUp) ? 'lit' : ""}`} as={"span"} key={e}>{e}</Col>
-        //             })
-        //         }
-        //     </Row>
-        //     <Row className="lamp-row">
-        //         {
-        //             thirdRow.map(e => {
-        //                 return <Col className={`flex-item ${(encryptedLetter === e && !isKeyUp) ? 'lit' : ""}`} as={"span"} key={e}>{e}</Col>
-        //             })
-        //         }
-        //     </Row>
-        // </Container>
+       
     );
 }
 
