@@ -1,7 +1,6 @@
 .base {
     background-color: #3b0400;
     background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
-    /* font: arial; */
     color: white;
     min-height: 44dvh;
 }
@@ -50,6 +49,7 @@
 
 .lit {
     background: yellow;
+
 }
 .off {
     background: white;

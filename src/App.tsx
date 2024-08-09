@@ -19,7 +19,6 @@ const App: React.FC = () => {
 	const [initialPositions, setInitialPositions] = useState<string>('')
 	const [pairsString, setPairsString] = useState<string>('')
 
-	
 
 	onkeydown = (e: any) => {
 		if (!e.repeat) {

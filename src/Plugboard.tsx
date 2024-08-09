@@ -11,7 +11,6 @@ interface Props {
     down: boolean,
     getAllInfo: any,
     setPairsString: Function,
-
 }
 
 

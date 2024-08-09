@@ -1,53 +1,43 @@
 .App {
-  text-align: center;
-  /* height: 200dvh; */
-  outline: red 1px solid;
-  /* overflow: hidden; */
+    text-align: center;
+    outline: red 1px solid;
 }
-body{
-  overflow: hidden;
+body {
+    overflow: hidden;
 }
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
-
-
-.rotors{
-  /* outline:  red solid 1px; */
-  background-color: #282c34;
-  /* min-height: 25vh; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.rotors {
+    background-color: #282c34;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
-.lampboard{
-  /* outline:  red solid 1px; */
-  background-color: #282c34; 
-  /* min-height: 50vh; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.lampboard {
+    background-color: #282c34;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
-.plugboard{
-  /* outline:  red solid 1px; */
-  background-color: #282c34;
-  /* min-height: 25vh; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.plugboard {
+    background-color: #282c34;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
