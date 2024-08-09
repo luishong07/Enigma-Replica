@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/Enigma-Replica/static/css/main.3e01524a.css",
+    "main.js": "/Enigma-Replica/static/js/main.d978fb75.js",
+    "static/js/787.01a78cb6.chunk.js": "/Enigma-Replica/static/js/787.01a78cb6.chunk.js",
+    "index.html": "/Enigma-Replica/index.html",
+    "static/media/increaseButton.svg": "/Enigma-Replica/static/media/increaseButton.7899cfbec5301fde556a.svg",
+    "static/media/decreaseButton.svg": "/Enigma-Replica/static/media/decreaseButton.736f4aeb6803acb7a617.svg",
+    "main.3e01524a.css.map": "/Enigma-Replica/static/css/main.3e01524a.css.map",
+    "main.d978fb75.js.map": "/Enigma-Replica/static/js/main.d978fb75.js.map",
+    "787.01a78cb6.chunk.js.map": "/Enigma-Replica/static/js/787.01a78cb6.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3e01524a.css",
+    "static/js/main.d978fb75.js"
+  ]
+}
